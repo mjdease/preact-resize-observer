@@ -1,0 +1,43 @@
+{
+  "name": "preact-resize-observer",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "tsc --outDir lib/ --watch",
+    "build": "tsc --outDir lib/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjdease/preact-resize-observer.git"
+  },
+  "keywords": [
+    "preact",
+    "resize",
+    "observer",
+    "element",
+    "size",
+    "detector"
+  ],
+  "author": "mjdease",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mjdease/preact-resize-observer/issues"
+  },
+  "homepage": "https://github.com/mjdease/preact-resize-observer#readme",
+  "devDependencies": {
+    "@types/prop-types": "15.5.2",
+    "preact": "8.2.7",
+    "tslint": "5.9.1",
+    "tslint-config-airbnb": "5.7.0",
+    "tslint-react": "3.5.1",
+    "typescript": "2.7.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.7"
+  },
+  "peerDependencies": {
+    "preact": "^8.2.7"
+  }
+}
