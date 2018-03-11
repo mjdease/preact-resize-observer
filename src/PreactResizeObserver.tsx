@@ -1,11 +1,11 @@
 import { h, Component } from 'preact';
 import ResizeObserver from 'resize-observer-polyfill';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 
-interface IProps {
+export interface IPreactResizeObserverProps {
   onResize(width: number, height: number): void;
-  width: boolean;
-  height: boolean;
+  width?: boolean;
+  height?: boolean;
 }
 
 const style: any = {
@@ -15,11 +15,11 @@ const style: any = {
   display: 'none',
 };
 
-export default class PreactResizeObserver extends Component<IProps, void> {
-  observer: ResizeObserver;
-  element?: Element;
-  currentWidth?: number;
-  currentHeight?: number;
+export default class PreactResizeObserver extends Component<IPreactResizeObserverProps, void> {
+  private observer: ResizeObserver;
+  private element?: Element;
+  private currentWidth?: number;
+  private currentHeight?: number;
 
   static propTypes = {
     onResize: PropTypes.func.isRequired,
@@ -32,7 +32,7 @@ export default class PreactResizeObserver extends Component<IProps, void> {
     height: false,
   };
 
-  constructor(props: IProps) {
+  constructor(props: IPreactResizeObserverProps) {
     super(props);
 
     this.observer = new ResizeObserver(this.onResize);
@@ -48,7 +48,7 @@ export default class PreactResizeObserver extends Component<IProps, void> {
     }
   }
 
-  onResize = (resizeEntries: ResizeObserverEntry[]) => {
+  private onResize = (resizeEntries: ResizeObserverEntry[]) => {
     const resizeCallback = this.props.onResize;
     if (typeof resizeCallback !== 'function') {
       return;
@@ -70,7 +70,7 @@ export default class PreactResizeObserver extends Component<IProps, void> {
     });
   }
 
-  handleRef = (el?:Element) => {
+  private handleRef = (el?:Element) => {
     this.element = el;
   }
 
