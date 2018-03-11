@@ -4,8 +4,9 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "start": "tsc --outDir lib/ --watch",
-    "build": "tsc --outDir lib/",
+    "start": "tsc --outDir dev/ --watch",
+    "build": "tsc --outDir dev/",
+    "release": "tsc --outDir lib/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@types/prop-types": "15.5.2",
     "preact": "8.2.7",
+    "resize-observer-polyfill": "1.5.0",
     "tslint": "5.9.1",
     "tslint-config-airbnb": "5.7.0",
     "tslint-react": "3.5.1",
