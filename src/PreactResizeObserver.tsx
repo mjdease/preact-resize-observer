@@ -16,6 +16,7 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
   private currentWidth?: number;
   private currentHeight?: number;
   private suppressResizeEvent: boolean = false;
+  private suppressReRender: boolean = false;
   private style = {
     position: 'absolute',
     width: 0,
@@ -53,12 +54,17 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     if (observedElement) {
       this.observeElement(observedElement);
     }
+    this.suppressReRender = true;
   }
 
   componentWillReceiveProps(nextProps: IPreactResizeObserverProps) {
     if (nextProps.element && nextProps.element !== this.props.element) {
       this.observeElement(nextProps.element);
     }
+  }
+
+  shouldComponentUpdate() {
+    return !this.suppressReRender;
   }
 
   private observeElement(element: Element) {
