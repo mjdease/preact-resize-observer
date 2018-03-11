@@ -12,6 +12,7 @@ export interface IPreactResizeObserverProps {
 
 export default class PreactResizeObserver extends Component<IPreactResizeObserverProps, void> {
   private observer: ResizeObserver;
+  private observedProperties: {[name in 'width'|'height']: boolean };
   private element?: Element;
   private currentWidth?: number;
   private currentHeight?: number;
@@ -33,13 +34,13 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
   };
 
   static defaultProps: Partial<IPreactResizeObserverProps> = {
-    width: false,
-    height: false,
     noInitial: false,
   };
 
   constructor(props: IPreactResizeObserverProps) {
     super(props);
+
+    this.observedProperties = this.getObservedProperties(props);
 
     this.observer = new ResizeObserver(this.onResize);
   }
@@ -58,6 +59,9 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
   }
 
   componentWillReceiveProps(nextProps: IPreactResizeObserverProps) {
+    if (nextProps.width !== this.props.width || nextProps.height !== this.props.height) {
+      this.observedProperties = this.getObservedProperties(nextProps);
+    }
     if (nextProps.element && nextProps.element !== this.props.element) {
       this.observeElement(nextProps.element);
     }
@@ -65,6 +69,19 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
 
   shouldComponentUpdate() {
     return !this.suppressReRender;
+  }
+
+  private getObservedProperties(props: Partial<IPreactResizeObserverProps>) {
+    if (typeof props.width === 'undefined' && typeof props.height === 'undefined') {
+      return this.observedProperties = {
+        width: true,
+        height: true,
+      };
+    }
+    return this.observedProperties = {
+      width: !!props.width,
+      height: !!props.height,
+    };
   }
 
   private observeElement(element: Element) {
@@ -85,11 +102,11 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     resizeEntries.forEach((entry) => {
       const { width, height } = entry.contentRect;
       let resized = false;
-      if (this.props.width && this.currentWidth !== width) {
+      if (this.observedProperties.width && this.currentWidth !== width) {
         resized = true;
         this.currentWidth = width;
       }
-      if (this.props.height && this.currentHeight !== height) {
+      if (this.observedProperties.height && this.currentHeight !== height) {
         resized = true;
         this.currentHeight = height;
       }
