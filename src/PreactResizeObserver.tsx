@@ -6,30 +6,35 @@ export interface IPreactResizeObserverProps {
   onResize(width: number, height: number): void;
   width?: boolean;
   height?: boolean;
+  element?: Element;
+  noInitial?: boolean;
 }
-
-const style: any = {
-  position: 'absolute',
-  width: 0,
-  height: 0,
-  display: 'none',
-};
 
 export default class PreactResizeObserver extends Component<IPreactResizeObserverProps, void> {
   private observer: ResizeObserver;
   private element?: Element;
   private currentWidth?: number;
   private currentHeight?: number;
+  private suppressResizeEvent: boolean = false;
+  private style = {
+    position: 'absolute',
+    width: 0,
+    height: 0,
+    display: 'none',
+  };
 
-  static propTypes = {
+  static propTypes: {[name in keyof IPreactResizeObserverProps]: any} = {
     onResize: PropTypes.func.isRequired,
     width: PropTypes.bool,
     height: PropTypes.bool,
+    element: PropTypes.element,
+    noInitial: PropTypes.bool,
   };
 
-  static defaultProps = {
+  static defaultProps: Partial<IPreactResizeObserverProps> = {
     width: false,
     height: false,
+    noInitial: false,
   };
 
   constructor(props: IPreactResizeObserverProps) {
@@ -40,16 +45,34 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
 
   componentDidMount() {
     let observedElement: Element | undefined;
-    if (this.element && this.element.parentElement) {
+    if (this.props.element) {
+      observedElement = this.props.element;
+    }  else if (this.element && this.element.parentElement) {
       observedElement = this.element.parentElement;
     }
     if (observedElement) {
-      this.observer.observe(observedElement);
+      this.observeElement(observedElement);
     }
+  }
+
+  componentWillReceiveProps(nextProps: IPreactResizeObserverProps) {
+    if (nextProps.element && nextProps.element !== this.props.element) {
+      this.observeElement(nextProps.element);
+    }
+  }
+
+  private observeElement(element: Element) {
+    this.suppressResizeEvent = this.props.noInitial as boolean;
+    this.observer.disconnect();
+    this.observer.observe(element);
   }
 
   private onResize = (resizeEntries: ResizeObserverEntry[]) => {
     const resizeCallback = this.props.onResize;
+    if (this.suppressResizeEvent) {
+      this.suppressResizeEvent = false;
+      return;
+    }
     if (typeof resizeCallback !== 'function') {
       return;
     }
@@ -76,7 +99,7 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
 
   render() {
     return (
-      <div ref={this.handleRef} style={style} />
+      <div ref={this.handleRef} style={this.style} />
     );
   }
 }
