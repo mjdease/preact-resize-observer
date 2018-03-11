@@ -1,0 +1,38 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  font: 14px/1.21 'Helvetica Neue', arial, sans-serif;
+  font-weight: 400;
+  background: #ccc;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats {
+  padding: 10px;
+}
+
+.child {
+  background: #eee;
+  width: 50%;
+  height: 50%;
+}
+
+.option-container {
+  padding: 5px 0px;
+}
+
+.option-label {
+  padding: 2px 5px;
+}

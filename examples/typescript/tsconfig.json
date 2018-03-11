@@ -1,0 +1,17 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      // Only needed due to symlinking
+      "preact": ["node_modules/preact"]
+    }
+  }
+}
