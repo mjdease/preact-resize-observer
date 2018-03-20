@@ -23,6 +23,9 @@
   ],
   "author": "mjdease",
   "license": "MIT",
+  "files": [
+    "/lib"
+  ],
   "bugs": {
     "url": "https://github.com/mjdease/preact-resize-observer/issues"
   },
