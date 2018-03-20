@@ -97,7 +97,7 @@ export default class App extends Component<{}, IAppState> {
               height={this.state.observeHeight}
               width={this.state.observeWidth}
               onResize={this.handleChildResize}
-              element={this.state.observedElement}
+              target={this.state.observedElement}
               noInitial={this.state.noInitial}
             />
             <div className="option-container">

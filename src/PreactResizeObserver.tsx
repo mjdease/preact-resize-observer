@@ -7,7 +7,7 @@ export interface IPreactResizeObserverProps {
   width?: boolean;
   height?: boolean;
   noInitial?: boolean;
-  element?: Element;
+  target?: Element;
 }
 
 export default class PreactResizeObserver extends Component<IPreactResizeObserverProps, void> {
@@ -29,7 +29,7 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     width: PropTypes.bool,
     height: PropTypes.bool,
     noInitial: PropTypes.bool,
-    element: PropTypes.element,
+    target: PropTypes.element,
   };
 
   static defaultProps: Partial<IPreactResizeObserverProps> = {
@@ -46,8 +46,8 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
 
   componentDidMount() {
     let observedElement: Element | undefined;
-    if (this.props.element) {
-      observedElement = this.props.element;
+    if (this.props.target) {
+      observedElement = this.props.target;
     }  else if (this.element && this.element.parentElement) {
       observedElement = this.element.parentElement;
     }
@@ -58,8 +58,8 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
   }
 
   componentWillReceiveProps(nextProps: IPreactResizeObserverProps) {
-    if (nextProps.element && nextProps.element !== this.props.element) {
-      this.observeElement(nextProps.element);
+    if (nextProps.target && nextProps.target !== this.props.target) {
+      this.observeElement(nextProps.target);
     }
   }
 
