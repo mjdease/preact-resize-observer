@@ -9,7 +9,8 @@
     "serve": "preact build && preact serve",
     "dev": "preact watch",
     "lint": "eslint src",
-    "link": "npm link preact-resize-observer"
+    "link": "npm link preact-resize-observer",
+    "build-demo": "preact build --dest ../../docs/demo"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor",
