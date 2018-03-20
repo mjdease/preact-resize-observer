@@ -10,4 +10,5 @@ const preactCliTypeScript = require('preact-cli-plugin-typescript');
  **/
 export default function (config, env, helpers) {
   preactCliTypeScript(config);
+  config.output.publicPath = '/preact-resize-observer/demo/';
 }
