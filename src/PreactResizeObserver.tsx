@@ -10,7 +10,7 @@ export interface IPreactResizeObserverProps {
   target?: Element;
 }
 
-export default class PreactResizeObserver extends Component<IPreactResizeObserverProps, void> {
+export default class PreactResizeObserver extends Component<IPreactResizeObserverProps> {
   private observer: ResizeObserver;
   private element?: Element;
   private currentWidth?: number;
