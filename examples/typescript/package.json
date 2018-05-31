@@ -9,7 +9,6 @@
     "serve": "preact build && preact serve",
     "dev": "preact watch",
     "lint": "eslint src",
-    "link": "npm link preact-resize-observer",
     "build-demo": "NODE_ENV=production preact build --dest ../../docs/demo"
   },
   "eslintConfig": {
