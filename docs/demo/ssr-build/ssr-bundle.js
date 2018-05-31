@@ -66,110 +66,36 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "4pM1":
+/***/ "5D9O":
 /***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- *
- * 
  */
 
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
+if (false) {
+  var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element') || 0xeac7;
+
+  var isValidElement = function isValidElement(object) {
+    return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
   };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = require('./factoryWithTypeCheckers')(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__("wVGV")();
 }
 
-/**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
- */
-var emptyFunction = function emptyFunction() {};
-
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-module.exports = emptyFunction;
-
 /***/ }),
 
-/***/ "632c":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var emptyFunction = __webpack_require__("4pM1");
-var invariant = __webpack_require__("z6mz");
-var ReactPropTypesSecret = __webpack_require__("7PB2");
-
-module.exports = function () {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret) {
-      // It is still safe when called from React.
-      return;
-    }
-    invariant(false, 'Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use PropTypes.checkPropTypes() to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
-  };
-  shim.isRequired = shim;
-  function getShim() {
-    return shim;
-  };
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim
-  };
-
-  ReactPropTypes.checkPropTypes = emptyFunction;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
-/***/ }),
-
-/***/ "7PB2":
+/***/ "Asjh":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -188,496 +114,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ "IPw9":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-    return mod && mod.__esModule ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var PreactResizeObserver_1 = __importDefault(__webpack_require__("Z07z"));
-exports.default = PreactResizeObserver_1.default;
-
-/***/ }),
-
-/***/ "JkW7":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-// EXTERNAL MODULE: ../node_modules/preact/dist/preact.min.js
-var preact_min = __webpack_require__("KM04");
-var preact_min_default = /*#__PURE__*/__webpack_require__.n(preact_min);
-
-// EXTERNAL MODULE: /Users/mdease/dev/preact-resize-observer/dev/index.js
-var dev = __webpack_require__("IPw9");
-var dev_default = /*#__PURE__*/__webpack_require__.n(dev);
-
-// EXTERNAL MODULE: ./App.css
-var App_0 = __webpack_require__("S03M");
-var App_default = /*#__PURE__*/__webpack_require__.n(App_0);
-
-// CONCATENATED MODULE: ./App.tsx
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-
-
-
-var App_App = /** @class */ (function (_super) {
-    __extends(App, _super);
-    function App() {
-        var _this = _super.call(this) || this;
-        _this.handleResize = function (width, height) {
-            _this.setState({
-                width: width,
-                height: height,
-            });
-        };
-        _this.handleChildResize = function (childWidth, childHeight) {
-            _this.setState({
-                childWidth: childWidth,
-                childHeight: childHeight,
-            });
-        };
-        _this.observeApp = function () {
-            _this.setState({
-                observedElement: _this.appEl,
-            });
-        };
-        _this.observeChild = function () {
-            _this.setState({
-                observedElement: _this.childEl,
-            });
-        };
-        _this.state = {
-            width: 0,
-            height: 0,
-            childWidth: 0,
-            childHeight: 0,
-            observedElement: null,
-            noInitial: false,
-            observeWidth: true,
-            observeHeight: true,
-        };
-        _this.toggleObserveWidth = _this.toggleState.bind(_this, 'observeWidth');
-        _this.toggleObserveHeight = _this.toggleState.bind(_this, 'observeHeight');
-        _this.toggleObserveNoInitial = _this.toggleState.bind(_this, 'noInitial');
-        return _this;
-    }
-    App.prototype.componentDidMount = function () {
-        this.setState({
-            observedElement: this.childEl,
-        });
-    };
-    App.prototype.toggleState = function (key) {
-        this.setState((_a = {},
-            // https://github.com/Microsoft/TypeScript/issues/13948
-            _a[key] = !this.state[key],
-            _a));
-        var _a;
-    };
-    App.prototype.render = function () {
-        var _this = this;
-        return (Object(preact_min["h"])("div", { id: "app", ref: function (el) { _this.appEl = el; } },
-            Object(preact_min["h"])("div", { className: "stats" },
-                Object(preact_min["h"])("h3", null, "Parent Observer"),
-                Object(preact_min["h"])("h2", null,
-                    this.state.width,
-                    " x ",
-                    this.state.height)),
-            Object(preact_min["h"])(dev_default.a, { onResize: this.handleResize }),
-            Object(preact_min["h"])("div", { className: "child", ref: function (el) { _this.childEl = el; } },
-                Object(preact_min["h"])("div", { className: "grandchild" },
-                    Object(preact_min["h"])("div", { className: "stats" },
-                        Object(preact_min["h"])("h3", null, "Custom Element Observer"),
-                        Object(preact_min["h"])("h2", null,
-                            this.state.childWidth,
-                            " x ",
-                            this.state.childHeight)),
-                    Object(preact_min["h"])(dev_default.a, { height: this.state.observeHeight, width: this.state.observeWidth, onResize: this.handleChildResize, target: this.state.observedElement, noInitial: this.state.noInitial }),
-                    Object(preact_min["h"])("div", { className: "option-container" },
-                        Object(preact_min["h"])("label", { className: "option-label" },
-                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observedElement === this.appEl, onChange: this.observeApp }),
-                            "Page"),
-                        Object(preact_min["h"])("label", { className: "option-label" },
-                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observedElement === this.childEl, onChange: this.observeChild }),
-                            "Child")),
-                    Object(preact_min["h"])("div", { className: "option-container" },
-                        Object(preact_min["h"])("label", { className: "option-label" },
-                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observeWidth, onChange: this.toggleObserveWidth }),
-                            "width"),
-                        Object(preact_min["h"])("label", { className: "option-label" },
-                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observeHeight, onChange: this.toggleObserveHeight }),
-                            "height"),
-                        Object(preact_min["h"])("label", { className: "option-label" },
-                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.noInitial, onChange: this.toggleObserveNoInitial }),
-                            "noInitial"))))));
-    };
-    return App;
-}(preact_min["Component"]));
-/* harmony default export */ var App_1 = (App_App);
-
-// CONCATENATED MODULE: ./index.js
-// .js entry point required for preact-cli
-// See - https://github.com/wub/preact-cli-plugin-typescript/issues/3
-
-
-
-/* harmony default export */ var index = __webpack_exports__["default"] = (App_1);
-
-/***/ }),
-
-/***/ "KM04":
-/***/ (function(module, exports, __webpack_require__) {
-
-!function () {
-  "use strict";
-  function e() {}function t(t, n) {
-    var o,
-        r,
-        i,
-        l,
-        a = E;for (l = arguments.length; l-- > 2;) {
-      W.push(arguments[l]);
-    }n && null != n.children && (W.length || W.push(n.children), delete n.children);while (W.length) {
-      if ((r = W.pop()) && void 0 !== r.pop) for (l = r.length; l--;) {
-        W.push(r[l]);
-      } else "boolean" == typeof r && (r = null), (i = "function" != typeof t) && (null == r ? r = "" : "number" == typeof r ? r += "" : "string" != typeof r && (i = !1)), i && o ? a[a.length - 1] += r : a === E ? a = [r] : a.push(r), o = i;
-    }var u = new e();return u.nodeName = t, u.children = a, u.attributes = null == n ? void 0 : n, u.key = null == n ? void 0 : n.key, void 0 !== S.vnode && S.vnode(u), u;
-  }function n(e, t) {
-    for (var n in t) {
-      e[n] = t[n];
-    }return e;
-  }function o(e, o) {
-    return t(e.nodeName, n(n({}, e.attributes), o), arguments.length > 2 ? [].slice.call(arguments, 2) : e.children);
-  }function r(e) {
-    !e.__d && (e.__d = !0) && 1 == A.push(e) && (S.debounceRendering || P)(i);
-  }function i() {
-    var e,
-        t = A;A = [];while (e = t.pop()) {
-      e.__d && k(e);
-    }
-  }function l(e, t, n) {
-    return "string" == typeof t || "number" == typeof t ? void 0 !== e.splitText : "string" == typeof t.nodeName ? !e._componentConstructor && a(e, t.nodeName) : n || e._componentConstructor === t.nodeName;
-  }function a(e, t) {
-    return e.__n === t || e.nodeName.toLowerCase() === t.toLowerCase();
-  }function u(e) {
-    var t = n({}, e.attributes);t.children = e.children;var o = e.nodeName.defaultProps;if (void 0 !== o) for (var r in o) {
-      void 0 === t[r] && (t[r] = o[r]);
-    }return t;
-  }function _(e, t) {
-    var n = t ? document.createElementNS("http://www.w3.org/2000/svg", e) : document.createElement(e);return n.__n = e, n;
-  }function p(e) {
-    var t = e.parentNode;t && t.removeChild(e);
-  }function c(e, t, n, o, r) {
-    if ("className" === t && (t = "class"), "key" === t) ;else if ("ref" === t) n && n(null), o && o(e);else if ("class" !== t || r) {
-      if ("style" === t) {
-        if (o && "string" != typeof o && "string" != typeof n || (e.style.cssText = o || ""), o && "object" == typeof o) {
-          if ("string" != typeof n) for (var i in n) {
-            i in o || (e.style[i] = "");
-          }for (var i in o) {
-            e.style[i] = "number" == typeof o[i] && !1 === V.test(i) ? o[i] + "px" : o[i];
-          }
-        }
-      } else if ("dangerouslySetInnerHTML" === t) o && (e.innerHTML = o.__html || "");else if ("o" == t[0] && "n" == t[1]) {
-        var l = t !== (t = t.replace(/Capture$/, ""));t = t.toLowerCase().substring(2), o ? n || e.addEventListener(t, f, l) : e.removeEventListener(t, f, l), (e.__l || (e.__l = {}))[t] = o;
-      } else if ("list" !== t && "type" !== t && !r && t in e) s(e, t, null == o ? "" : o), null != o && !1 !== o || e.removeAttribute(t);else {
-        var a = r && t !== (t = t.replace(/^xlink\:?/, ""));null == o || !1 === o ? a ? e.removeAttributeNS("http://www.w3.org/1999/xlink", t.toLowerCase()) : e.removeAttribute(t) : "function" != typeof o && (a ? e.setAttributeNS("http://www.w3.org/1999/xlink", t.toLowerCase(), o) : e.setAttribute(t, o));
-      }
-    } else e.className = o || "";
-  }function s(e, t, n) {
-    try {
-      e[t] = n;
-    } catch (e) {}
-  }function f(e) {
-    return this.__l[e.type](S.event && S.event(e) || e);
-  }function d() {
-    var e;while (e = D.pop()) {
-      S.afterMount && S.afterMount(e), e.componentDidMount && e.componentDidMount();
-    }
-  }function h(e, t, n, o, r, i) {
-    H++ || (R = null != r && void 0 !== r.ownerSVGElement, j = null != e && !("__preactattr_" in e));var l = m(e, t, n, o, i);return r && l.parentNode !== r && r.appendChild(l), --H || (j = !1, i || d()), l;
-  }function m(e, t, n, o, r) {
-    var i = e,
-        l = R;if (null != t && "boolean" != typeof t || (t = ""), "string" == typeof t || "number" == typeof t) return e && void 0 !== e.splitText && e.parentNode && (!e._component || r) ? e.nodeValue != t && (e.nodeValue = t) : (i = document.createTextNode(t), e && (e.parentNode && e.parentNode.replaceChild(i, e), b(e, !0))), i.__preactattr_ = !0, i;var u = t.nodeName;if ("function" == typeof u) return U(e, t, n, o);if (R = "svg" === u || "foreignObject" !== u && R, u += "", (!e || !a(e, u)) && (i = _(u, R), e)) {
-      while (e.firstChild) {
-        i.appendChild(e.firstChild);
-      }e.parentNode && e.parentNode.replaceChild(i, e), b(e, !0);
-    }var p = i.firstChild,
-        c = i.__preactattr_,
-        s = t.children;if (null == c) {
-      c = i.__preactattr_ = {};for (var f = i.attributes, d = f.length; d--;) {
-        c[f[d].name] = f[d].value;
-      }
-    }return !j && s && 1 === s.length && "string" == typeof s[0] && null != p && void 0 !== p.splitText && null == p.nextSibling ? p.nodeValue != s[0] && (p.nodeValue = s[0]) : (s && s.length || null != p) && v(i, s, n, o, j || null != c.dangerouslySetInnerHTML), g(i, t.attributes, c), R = l, i;
-  }function v(e, t, n, o, r) {
-    var i,
-        a,
-        u,
-        _,
-        c,
-        s = e.childNodes,
-        f = [],
-        d = {},
-        h = 0,
-        v = 0,
-        y = s.length,
-        g = 0,
-        w = t ? t.length : 0;if (0 !== y) for (var C = 0; C < y; C++) {
-      var x = s[C],
-          N = x.__preactattr_,
-          k = w && N ? x._component ? x._component.__k : N.key : null;null != k ? (h++, d[k] = x) : (N || (void 0 !== x.splitText ? !r || x.nodeValue.trim() : r)) && (f[g++] = x);
-    }if (0 !== w) for (var C = 0; C < w; C++) {
-      _ = t[C], c = null;var k = _.key;if (null != k) h && void 0 !== d[k] && (c = d[k], d[k] = void 0, h--);else if (!c && v < g) for (i = v; i < g; i++) {
-        if (void 0 !== f[i] && l(a = f[i], _, r)) {
-          c = a, f[i] = void 0, i === g - 1 && g--, i === v && v++;break;
-        }
-      }c = m(c, _, n, o), u = s[C], c && c !== e && c !== u && (null == u ? e.appendChild(c) : c === u.nextSibling ? p(u) : e.insertBefore(c, u));
-    }if (h) for (var C in d) {
-      void 0 !== d[C] && b(d[C], !1);
-    }while (v <= g) {
-      void 0 !== (c = f[g--]) && b(c, !1);
-    }
-  }function b(e, t) {
-    var n = e._component;n ? L(n) : (null != e.__preactattr_ && e.__preactattr_.ref && e.__preactattr_.ref(null), !1 !== t && null != e.__preactattr_ || p(e), y(e));
-  }function y(e) {
-    e = e.lastChild;while (e) {
-      var t = e.previousSibling;b(e, !0), e = t;
-    }
-  }function g(e, t, n) {
-    var o;for (o in n) {
-      t && null != t[o] || null == n[o] || c(e, o, n[o], n[o] = void 0, R);
-    }for (o in t) {
-      "children" === o || "innerHTML" === o || o in n && t[o] === ("value" === o || "checked" === o ? e[o] : n[o]) || c(e, o, n[o], n[o] = t[o], R);
-    }
-  }function w(e) {
-    var t = e.constructor.name;(I[t] || (I[t] = [])).push(e);
-  }function C(e, t, n) {
-    var o,
-        r = I[e.name];if (e.prototype && e.prototype.render ? (o = new e(t, n), T.call(o, t, n)) : (o = new T(t, n), o.constructor = e, o.render = x), r) for (var i = r.length; i--;) {
-      if (r[i].constructor === e) {
-        o.__b = r[i].__b, r.splice(i, 1);break;
-      }
-    }return o;
-  }function x(e, t, n) {
-    return this.constructor(e, n);
-  }function N(e, t, n, o, i) {
-    e.__x || (e.__x = !0, (e.__r = t.ref) && delete t.ref, (e.__k = t.key) && delete t.key, !e.base || i ? e.componentWillMount && e.componentWillMount() : e.componentWillReceiveProps && e.componentWillReceiveProps(t, o), o && o !== e.context && (e.__c || (e.__c = e.context), e.context = o), e.__p || (e.__p = e.props), e.props = t, e.__x = !1, 0 !== n && (1 !== n && !1 === S.syncComponentUpdates && e.base ? r(e) : k(e, 1, i)), e.__r && e.__r(e));
-  }function k(e, t, o, r) {
-    if (!e.__x) {
-      var i,
-          l,
-          a,
-          _ = e.props,
-          p = e.state,
-          c = e.context,
-          s = e.__p || _,
-          f = e.__s || p,
-          m = e.__c || c,
-          v = e.base,
-          y = e.__b,
-          g = v || y,
-          w = e._component,
-          x = !1;if (v && (e.props = s, e.state = f, e.context = m, 2 !== t && e.shouldComponentUpdate && !1 === e.shouldComponentUpdate(_, p, c) ? x = !0 : e.componentWillUpdate && e.componentWillUpdate(_, p, c), e.props = _, e.state = p, e.context = c), e.__p = e.__s = e.__c = e.__b = null, e.__d = !1, !x) {
-        i = e.render(_, p, c), e.getChildContext && (c = n(n({}, c), e.getChildContext()));var U,
-            T,
-            M = i && i.nodeName;if ("function" == typeof M) {
-          var W = u(i);l = w, l && l.constructor === M && W.key == l.__k ? N(l, W, 1, c, !1) : (U = l, e._component = l = C(M, W, c), l.__b = l.__b || y, l.__u = e, N(l, W, 0, c, !1), k(l, 1, o, !0)), T = l.base;
-        } else a = g, U = w, U && (a = e._component = null), (g || 1 === t) && (a && (a._component = null), T = h(a, i, c, o || !v, g && g.parentNode, !0));if (g && T !== g && l !== w) {
-          var E = g.parentNode;E && T !== E && (E.replaceChild(T, g), U || (g._component = null, b(g, !1)));
-        }if (U && L(U), e.base = T, T && !r) {
-          var P = e,
-              V = e;while (V = V.__u) {
-            (P = V).base = T;
-          }T._component = P, T._componentConstructor = P.constructor;
-        }
-      }if (!v || o ? D.unshift(e) : x || (e.componentDidUpdate && e.componentDidUpdate(s, f, m), S.afterUpdate && S.afterUpdate(e)), null != e.__h) while (e.__h.length) {
-        e.__h.pop().call(e);
-      }H || r || d();
-    }
-  }function U(e, t, n, o) {
-    var r = e && e._component,
-        i = r,
-        l = e,
-        a = r && e._componentConstructor === t.nodeName,
-        _ = a,
-        p = u(t);while (r && !_ && (r = r.__u)) {
-      _ = r.constructor === t.nodeName;
-    }return r && _ && (!o || r._component) ? (N(r, p, 3, n, o), e = r.base) : (i && !a && (L(i), e = l = null), r = C(t.nodeName, p, n), e && !r.__b && (r.__b = e, l = null), N(r, p, 1, n, o), e = r.base, l && e !== l && (l._component = null, b(l, !1))), e;
-  }function L(e) {
-    S.beforeUnmount && S.beforeUnmount(e);var t = e.base;e.__x = !0, e.componentWillUnmount && e.componentWillUnmount(), e.base = null;var n = e._component;n ? L(n) : t && (t.__preactattr_ && t.__preactattr_.ref && t.__preactattr_.ref(null), e.__b = t, p(t), w(e), y(t)), e.__r && e.__r(null);
-  }function T(e, t) {
-    this.__d = !0, this.context = t, this.props = e, this.state = this.state || {};
-  }function M(e, t, n) {
-    return h(n, e, {}, !1, t, !1);
-  }var S = {},
-      W = [],
-      E = [],
-      P = "function" == typeof Promise ? Promise.resolve().then.bind(Promise.resolve()) : setTimeout,
-      V = /acit|ex(?:s|g|n|p|$)|rph|ows|mnc|ntw|ine[ch]|zoo|^ord/i,
-      A = [],
-      D = [],
-      H = 0,
-      R = !1,
-      j = !1,
-      I = {};n(T.prototype, { setState: function setState(e, t) {
-      var o = this.state;this.__s || (this.__s = n({}, o)), n(o, "function" == typeof e ? e(o, this.props) : e), t && (this.__h = this.__h || []).push(t), r(this);
-    }, forceUpdate: function forceUpdate(e) {
-      e && (this.__h = this.__h || []).push(e), k(this, 2);
-    }, render: function render() {} });var $ = { h: t, createElement: t, cloneElement: o, Component: T, render: M, rerender: i, options: S }; true ? module.exports = $ : self.preact = $;
-}();
-//# sourceMappingURL=preact.min.js.map
-
-/***/ }),
-
-/***/ "S03M":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "Z07z":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = this && this.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-var __importDefault = this && this.__importDefault || function (mod) {
-    return mod && mod.__esModule ? mod : { "default": mod };
-};
-var __importStar = this && this.__importStar || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) {
-        if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    }result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var preact_1 = __webpack_require__("KM04");
-var resize_observer_polyfill_1 = __importDefault(__webpack_require__("cu/3"));
-var PropTypes = __importStar(__webpack_require__("yu5W"));
-var PreactResizeObserver = /** @class */function (_super) {
-    __extends(PreactResizeObserver, _super);
-    function PreactResizeObserver(props) {
-        var _this = _super.call(this, props) || this;
-        _this.suppressResizeEvent = false;
-        _this.suppressReRender = false;
-        _this.style = {
-            position: 'absolute',
-            width: 0,
-            height: 0,
-            display: 'none'
-        };
-        _this.onResize = function (resizeEntries) {
-            var resizeCallback = _this.props.onResize;
-            if (_this.suppressResizeEvent) {
-                _this.suppressResizeEvent = false;
-                return;
-            }
-            if (typeof resizeCallback !== 'function') {
-                return;
-            }
-            resizeEntries.forEach(function (entry) {
-                var _a = entry.contentRect,
-                    width = _a.width,
-                    height = _a.height;
-                var resized = false;
-                if (_this.props.width && _this.currentWidth !== width) {
-                    resized = true;
-                    _this.currentWidth = width;
-                }
-                if (_this.props.height && _this.currentHeight !== height) {
-                    resized = true;
-                    _this.currentHeight = height;
-                }
-                if (resized) {
-                    resizeCallback(width, height);
-                }
-            });
-        };
-        _this.handleRef = function (el) {
-            _this.element = el;
-        };
-        _this.observer = new resize_observer_polyfill_1.default(_this.onResize);
-        return _this;
-    }
-    PreactResizeObserver.prototype.componentDidMount = function () {
-        var observedElement;
-        if (this.props.target) {
-            observedElement = this.props.target;
-        } else if (this.element && this.element.parentElement) {
-            observedElement = this.element.parentElement;
-        }
-        if (observedElement) {
-            this.observeElement(observedElement);
-        }
-        this.suppressReRender = true;
-    };
-    PreactResizeObserver.prototype.componentWillReceiveProps = function (nextProps) {
-        if (nextProps.target && nextProps.target !== this.props.target) {
-            this.observeElement(nextProps.target);
-        }
-    };
-    PreactResizeObserver.prototype.shouldComponentUpdate = function () {
-        return !this.suppressReRender;
-    };
-    PreactResizeObserver.prototype.observeElement = function (element) {
-        this.suppressResizeEvent = this.props.noInitial;
-        this.observer.disconnect();
-        this.observer.observe(element);
-    };
-    PreactResizeObserver.prototype.render = function () {
-        return preact_1.h("div", { ref: this.handleRef, style: this.style });
-    };
-    PreactResizeObserver.propTypes = {
-        onResize: PropTypes.func.isRequired,
-        width: PropTypes.bool,
-        height: PropTypes.bool,
-        noInitial: PropTypes.bool,
-        target: PropTypes.element
-    };
-    PreactResizeObserver.defaultProps = {
-        noInitial: false,
-        width: true,
-        height: true
-    };
-    return PreactResizeObserver;
-}(preact_1.Component);
-exports.default = PreactResizeObserver;
-
-/***/ }),
-
-/***/ "cu/3":
+/***/ "C4qV":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1714,36 +1151,539 @@ var index = function () {
 
 /***/ }),
 
-/***/ "yu5W":
+/***/ "IPw9":
 /***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+    return mod && mod.__esModule ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var PreactResizeObserver_1 = __importDefault(__webpack_require__("Z07z"));
+exports.default = PreactResizeObserver_1.default;
+
+/***/ }),
+
+/***/ "JkW7":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// EXTERNAL MODULE: ../node_modules/preact/dist/preact.min.js
+var preact_min = __webpack_require__("KM04");
+var preact_min_default = /*#__PURE__*/__webpack_require__.n(preact_min);
+
+// EXTERNAL MODULE: /Users/mdease/dev/preact-resize-observer/dev/index.js
+var dev = __webpack_require__("IPw9");
+var dev_default = /*#__PURE__*/__webpack_require__.n(dev);
+
+// EXTERNAL MODULE: ./App.css
+var App_0 = __webpack_require__("S03M");
+var App_default = /*#__PURE__*/__webpack_require__.n(App_0);
+
+// CONCATENATED MODULE: ./App.tsx
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+var App_App = /** @class */ (function (_super) {
+    __extends(App, _super);
+    function App() {
+        var _this = _super.call(this) || this;
+        _this.handleResize = function (width, height) {
+            _this.setState({
+                width: width,
+                height: height,
+            });
+        };
+        _this.handleChildResize = function (childWidth, childHeight) {
+            _this.setState({
+                childWidth: childWidth,
+                childHeight: childHeight,
+            });
+        };
+        _this.observeApp = function () {
+            _this.setState({
+                observedElement: _this.appEl,
+            });
+        };
+        _this.observeChild = function () {
+            _this.setState({
+                observedElement: _this.childEl,
+            });
+        };
+        _this.state = {
+            width: 0,
+            height: 0,
+            childWidth: 0,
+            childHeight: 0,
+            observedElement: null,
+            noInitial: false,
+            observeWidth: true,
+            observeHeight: true,
+        };
+        _this.toggleObserveWidth = _this.toggleState.bind(_this, 'observeWidth');
+        _this.toggleObserveHeight = _this.toggleState.bind(_this, 'observeHeight');
+        _this.toggleObserveNoInitial = _this.toggleState.bind(_this, 'noInitial');
+        return _this;
+    }
+    App.prototype.componentDidMount = function () {
+        this.setState({
+            observedElement: this.childEl,
+        });
+    };
+    App.prototype.toggleState = function (key) {
+        this.setState((_a = {},
+            // https://github.com/Microsoft/TypeScript/issues/13948
+            _a[key] = !this.state[key],
+            _a));
+        var _a;
+    };
+    App.prototype.render = function () {
+        var _this = this;
+        return (Object(preact_min["h"])("div", { id: "app", ref: function (el) { _this.appEl = el; } },
+            Object(preact_min["h"])("div", { className: "stats" },
+                Object(preact_min["h"])("h3", null, "Parent Observer"),
+                Object(preact_min["h"])("h2", null,
+                    this.state.width,
+                    " x ",
+                    this.state.height)),
+            Object(preact_min["h"])(dev_default.a, { onResize: this.handleResize }),
+            Object(preact_min["h"])("div", { className: "child", ref: function (el) { _this.childEl = el; } },
+                Object(preact_min["h"])("div", { className: "grandchild" },
+                    Object(preact_min["h"])("div", { className: "stats" },
+                        Object(preact_min["h"])("h3", null, "Custom Element Observer"),
+                        Object(preact_min["h"])("h2", null,
+                            this.state.childWidth,
+                            " x ",
+                            this.state.childHeight)),
+                    Object(preact_min["h"])(dev_default.a, { height: this.state.observeHeight, width: this.state.observeWidth, onResize: this.handleChildResize, target: this.state.observedElement, noInitial: this.state.noInitial }),
+                    Object(preact_min["h"])("div", { className: "option-container" },
+                        Object(preact_min["h"])("label", { className: "option-label" },
+                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observedElement === this.appEl, onChange: this.observeApp }),
+                            "Page"),
+                        Object(preact_min["h"])("label", { className: "option-label" },
+                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observedElement === this.childEl, onChange: this.observeChild }),
+                            "Child")),
+                    Object(preact_min["h"])("div", { className: "option-container" },
+                        Object(preact_min["h"])("label", { className: "option-label" },
+                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observeWidth, onChange: this.toggleObserveWidth }),
+                            "width"),
+                        Object(preact_min["h"])("label", { className: "option-label" },
+                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observeHeight, onChange: this.toggleObserveHeight }),
+                            "height"),
+                        Object(preact_min["h"])("label", { className: "option-label" },
+                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.noInitial, onChange: this.toggleObserveNoInitial }),
+                            "noInitial"))))));
+    };
+    return App;
+}(preact_min["Component"]));
+/* harmony default export */ var App_1 = (App_App);
+
+// CONCATENATED MODULE: ./index.js
+// .js entry point required for preact-cli
+// See - https://github.com/wub/preact-cli-plugin-typescript/issues/3
+
+
+
+/* harmony default export */ var index = __webpack_exports__["default"] = (App_1);
+
+/***/ }),
+
+/***/ "KM04":
+/***/ (function(module, exports, __webpack_require__) {
+
+!function () {
+  "use strict";
+  function e() {}function t(t, n) {
+    var o,
+        r,
+        i,
+        l,
+        a = E;for (l = arguments.length; l-- > 2;) {
+      W.push(arguments[l]);
+    }n && null != n.children && (W.length || W.push(n.children), delete n.children);while (W.length) {
+      if ((r = W.pop()) && void 0 !== r.pop) for (l = r.length; l--;) {
+        W.push(r[l]);
+      } else "boolean" == typeof r && (r = null), (i = "function" != typeof t) && (null == r ? r = "" : "number" == typeof r ? r += "" : "string" != typeof r && (i = !1)), i && o ? a[a.length - 1] += r : a === E ? a = [r] : a.push(r), o = i;
+    }var u = new e();return u.nodeName = t, u.children = a, u.attributes = null == n ? void 0 : n, u.key = null == n ? void 0 : n.key, void 0 !== S.vnode && S.vnode(u), u;
+  }function n(e, t) {
+    for (var n in t) {
+      e[n] = t[n];
+    }return e;
+  }function o(e, o) {
+    return t(e.nodeName, n(n({}, e.attributes), o), arguments.length > 2 ? [].slice.call(arguments, 2) : e.children);
+  }function r(e) {
+    !e.__d && (e.__d = !0) && 1 == A.push(e) && (S.debounceRendering || P)(i);
+  }function i() {
+    var e,
+        t = A;A = [];while (e = t.pop()) {
+      e.__d && k(e);
+    }
+  }function l(e, t, n) {
+    return "string" == typeof t || "number" == typeof t ? void 0 !== e.splitText : "string" == typeof t.nodeName ? !e._componentConstructor && a(e, t.nodeName) : n || e._componentConstructor === t.nodeName;
+  }function a(e, t) {
+    return e.__n === t || e.nodeName.toLowerCase() === t.toLowerCase();
+  }function u(e) {
+    var t = n({}, e.attributes);t.children = e.children;var o = e.nodeName.defaultProps;if (void 0 !== o) for (var r in o) {
+      void 0 === t[r] && (t[r] = o[r]);
+    }return t;
+  }function _(e, t) {
+    var n = t ? document.createElementNS("http://www.w3.org/2000/svg", e) : document.createElement(e);return n.__n = e, n;
+  }function p(e) {
+    var t = e.parentNode;t && t.removeChild(e);
+  }function c(e, t, n, o, r) {
+    if ("className" === t && (t = "class"), "key" === t) ;else if ("ref" === t) n && n(null), o && o(e);else if ("class" !== t || r) {
+      if ("style" === t) {
+        if (o && "string" != typeof o && "string" != typeof n || (e.style.cssText = o || ""), o && "object" == typeof o) {
+          if ("string" != typeof n) for (var i in n) {
+            i in o || (e.style[i] = "");
+          }for (var i in o) {
+            e.style[i] = "number" == typeof o[i] && !1 === V.test(i) ? o[i] + "px" : o[i];
+          }
+        }
+      } else if ("dangerouslySetInnerHTML" === t) o && (e.innerHTML = o.__html || "");else if ("o" == t[0] && "n" == t[1]) {
+        var l = t !== (t = t.replace(/Capture$/, ""));t = t.toLowerCase().substring(2), o ? n || e.addEventListener(t, f, l) : e.removeEventListener(t, f, l), (e.__l || (e.__l = {}))[t] = o;
+      } else if ("list" !== t && "type" !== t && !r && t in e) s(e, t, null == o ? "" : o), null != o && !1 !== o || e.removeAttribute(t);else {
+        var a = r && t !== (t = t.replace(/^xlink:?/, ""));null == o || !1 === o ? a ? e.removeAttributeNS("http://www.w3.org/1999/xlink", t.toLowerCase()) : e.removeAttribute(t) : "function" != typeof o && (a ? e.setAttributeNS("http://www.w3.org/1999/xlink", t.toLowerCase(), o) : e.setAttribute(t, o));
+      }
+    } else e.className = o || "";
+  }function s(e, t, n) {
+    try {
+      e[t] = n;
+    } catch (e) {}
+  }function f(e) {
+    return this.__l[e.type](S.event && S.event(e) || e);
+  }function d() {
+    var e;while (e = D.pop()) {
+      S.afterMount && S.afterMount(e), e.componentDidMount && e.componentDidMount();
+    }
+  }function h(e, t, n, o, r, i) {
+    H++ || (R = null != r && void 0 !== r.ownerSVGElement, j = null != e && !("__preactattr_" in e));var l = m(e, t, n, o, i);return r && l.parentNode !== r && r.appendChild(l), --H || (j = !1, i || d()), l;
+  }function m(e, t, n, o, r) {
+    var i = e,
+        l = R;if (null != t && "boolean" != typeof t || (t = ""), "string" == typeof t || "number" == typeof t) return e && void 0 !== e.splitText && e.parentNode && (!e._component || r) ? e.nodeValue != t && (e.nodeValue = t) : (i = document.createTextNode(t), e && (e.parentNode && e.parentNode.replaceChild(i, e), b(e, !0))), i.__preactattr_ = !0, i;var u = t.nodeName;if ("function" == typeof u) return U(e, t, n, o);if (R = "svg" === u || "foreignObject" !== u && R, u += "", (!e || !a(e, u)) && (i = _(u, R), e)) {
+      while (e.firstChild) {
+        i.appendChild(e.firstChild);
+      }e.parentNode && e.parentNode.replaceChild(i, e), b(e, !0);
+    }var p = i.firstChild,
+        c = i.__preactattr_,
+        s = t.children;if (null == c) {
+      c = i.__preactattr_ = {};for (var f = i.attributes, d = f.length; d--;) {
+        c[f[d].name] = f[d].value;
+      }
+    }return !j && s && 1 === s.length && "string" == typeof s[0] && null != p && void 0 !== p.splitText && null == p.nextSibling ? p.nodeValue != s[0] && (p.nodeValue = s[0]) : (s && s.length || null != p) && v(i, s, n, o, j || null != c.dangerouslySetInnerHTML), g(i, t.attributes, c), R = l, i;
+  }function v(e, t, n, o, r) {
+    var i,
+        a,
+        u,
+        _,
+        c,
+        s = e.childNodes,
+        f = [],
+        d = {},
+        h = 0,
+        v = 0,
+        y = s.length,
+        g = 0,
+        w = t ? t.length : 0;if (0 !== y) for (var C = 0; C < y; C++) {
+      var x = s[C],
+          N = x.__preactattr_,
+          k = w && N ? x._component ? x._component.__k : N.key : null;null != k ? (h++, d[k] = x) : (N || (void 0 !== x.splitText ? !r || x.nodeValue.trim() : r)) && (f[g++] = x);
+    }if (0 !== w) for (var C = 0; C < w; C++) {
+      _ = t[C], c = null;var k = _.key;if (null != k) h && void 0 !== d[k] && (c = d[k], d[k] = void 0, h--);else if (!c && v < g) for (i = v; i < g; i++) {
+        if (void 0 !== f[i] && l(a = f[i], _, r)) {
+          c = a, f[i] = void 0, i === g - 1 && g--, i === v && v++;break;
+        }
+      }c = m(c, _, n, o), u = s[C], c && c !== e && c !== u && (null == u ? e.appendChild(c) : c === u.nextSibling ? p(u) : e.insertBefore(c, u));
+    }if (h) for (var C in d) {
+      void 0 !== d[C] && b(d[C], !1);
+    }while (v <= g) {
+      void 0 !== (c = f[g--]) && b(c, !1);
+    }
+  }function b(e, t) {
+    var n = e._component;n ? L(n) : (null != e.__preactattr_ && e.__preactattr_.ref && e.__preactattr_.ref(null), !1 !== t && null != e.__preactattr_ || p(e), y(e));
+  }function y(e) {
+    e = e.lastChild;while (e) {
+      var t = e.previousSibling;b(e, !0), e = t;
+    }
+  }function g(e, t, n) {
+    var o;for (o in n) {
+      t && null != t[o] || null == n[o] || c(e, o, n[o], n[o] = void 0, R);
+    }for (o in t) {
+      "children" === o || "innerHTML" === o || o in n && t[o] === ("value" === o || "checked" === o ? e[o] : n[o]) || c(e, o, n[o], n[o] = t[o], R);
+    }
+  }function w(e) {
+    var t = e.constructor.name;(I[t] || (I[t] = [])).push(e);
+  }function C(e, t, n) {
+    var o,
+        r = I[e.name];if (e.prototype && e.prototype.render ? (o = new e(t, n), T.call(o, t, n)) : (o = new T(t, n), o.constructor = e, o.render = x), r) for (var i = r.length; i--;) {
+      if (r[i].constructor === e) {
+        o.__b = r[i].__b, r.splice(i, 1);break;
+      }
+    }return o;
+  }function x(e, t, n) {
+    return this.constructor(e, n);
+  }function N(e, t, n, o, i) {
+    e.__x || (e.__x = !0, (e.__r = t.ref) && delete t.ref, (e.__k = t.key) && delete t.key, !e.base || i ? e.componentWillMount && e.componentWillMount() : e.componentWillReceiveProps && e.componentWillReceiveProps(t, o), o && o !== e.context && (e.__c || (e.__c = e.context), e.context = o), e.__p || (e.__p = e.props), e.props = t, e.__x = !1, 0 !== n && (1 !== n && !1 === S.syncComponentUpdates && e.base ? r(e) : k(e, 1, i)), e.__r && e.__r(e));
+  }function k(e, t, o, r) {
+    if (!e.__x) {
+      var i,
+          l,
+          a,
+          _ = e.props,
+          p = e.state,
+          c = e.context,
+          s = e.__p || _,
+          f = e.__s || p,
+          m = e.__c || c,
+          v = e.base,
+          y = e.__b,
+          g = v || y,
+          w = e._component,
+          x = !1;if (v && (e.props = s, e.state = f, e.context = m, 2 !== t && e.shouldComponentUpdate && !1 === e.shouldComponentUpdate(_, p, c) ? x = !0 : e.componentWillUpdate && e.componentWillUpdate(_, p, c), e.props = _, e.state = p, e.context = c), e.__p = e.__s = e.__c = e.__b = null, e.__d = !1, !x) {
+        i = e.render(_, p, c), e.getChildContext && (c = n(n({}, c), e.getChildContext()));var U,
+            T,
+            M = i && i.nodeName;if ("function" == typeof M) {
+          var W = u(i);l = w, l && l.constructor === M && W.key == l.__k ? N(l, W, 1, c, !1) : (U = l, e._component = l = C(M, W, c), l.__b = l.__b || y, l.__u = e, N(l, W, 0, c, !1), k(l, 1, o, !0)), T = l.base;
+        } else a = g, U = w, U && (a = e._component = null), (g || 1 === t) && (a && (a._component = null), T = h(a, i, c, o || !v, g && g.parentNode, !0));if (g && T !== g && l !== w) {
+          var E = g.parentNode;E && T !== E && (E.replaceChild(T, g), U || (g._component = null, b(g, !1)));
+        }if (U && L(U), e.base = T, T && !r) {
+          var P = e,
+              V = e;while (V = V.__u) {
+            (P = V).base = T;
+          }T._component = P, T._componentConstructor = P.constructor;
+        }
+      }if (!v || o ? D.unshift(e) : x || (e.componentDidUpdate && e.componentDidUpdate(s, f, m), S.afterUpdate && S.afterUpdate(e)), null != e.__h) while (e.__h.length) {
+        e.__h.pop().call(e);
+      }H || r || d();
+    }
+  }function U(e, t, n, o) {
+    var r = e && e._component,
+        i = r,
+        l = e,
+        a = r && e._componentConstructor === t.nodeName,
+        _ = a,
+        p = u(t);while (r && !_ && (r = r.__u)) {
+      _ = r.constructor === t.nodeName;
+    }return r && _ && (!o || r._component) ? (N(r, p, 3, n, o), e = r.base) : (i && !a && (L(i), e = l = null), r = C(t.nodeName, p, n), e && !r.__b && (r.__b = e, l = null), N(r, p, 1, n, o), e = r.base, l && e !== l && (l._component = null, b(l, !1))), e;
+  }function L(e) {
+    S.beforeUnmount && S.beforeUnmount(e);var t = e.base;e.__x = !0, e.componentWillUnmount && e.componentWillUnmount(), e.base = null;var n = e._component;n ? L(n) : t && (t.__preactattr_ && t.__preactattr_.ref && t.__preactattr_.ref(null), e.__b = t, p(t), w(e), y(t)), e.__r && e.__r(null);
+  }function T(e, t) {
+    this.__d = !0, this.context = t, this.props = e, this.state = this.state || {};
+  }function M(e, t, n) {
+    return h(n, e, {}, !1, t, !1);
+  }var S = {},
+      W = [],
+      E = [],
+      P = "function" == typeof Promise ? Promise.resolve().then.bind(Promise.resolve()) : setTimeout,
+      V = /acit|ex(?:s|g|n|p|$)|rph|ows|mnc|ntw|ine[ch]|zoo|^ord/i,
+      A = [],
+      D = [],
+      H = 0,
+      R = !1,
+      j = !1,
+      I = {};n(T.prototype, { setState: function setState(e, t) {
+      var o = this.state;this.__s || (this.__s = n({}, o)), n(o, "function" == typeof e ? e(o, this.props) : e), t && (this.__h = this.__h || []).push(t), r(this);
+    }, forceUpdate: function forceUpdate(e) {
+      e && (this.__h = this.__h || []).push(e), k(this, 2);
+    }, render: function render() {} });var $ = { h: t, createElement: t, cloneElement: o, Component: T, render: M, rerender: i, options: S }; true ? module.exports = $ : self.preact = $;
+}();
+//# sourceMappingURL=preact.min.js.map
+
+/***/ }),
+
+/***/ "S03M":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "UQex":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ *
+ * 
  */
 
-if (false) {
-  var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element') || 0xeac7;
-
-  var isValidElement = function isValidElement(object) {
-    return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
   };
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = require('./factoryWithTypeCheckers')(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__("632c")();
 }
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction = function emptyFunction() {};
+
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+module.exports = emptyFunction;
 
 /***/ }),
 
-/***/ "z6mz":
+/***/ "Z07z":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = this && this.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+var __importDefault = this && this.__importDefault || function (mod) {
+    return mod && mod.__esModule ? mod : { "default": mod };
+};
+var __importStar = this && this.__importStar || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) {
+        if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    }result["default"] = mod;
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__("KM04");
+var resize_observer_polyfill_1 = __importDefault(__webpack_require__("C4qV"));
+var PropTypes = __importStar(__webpack_require__("5D9O"));
+var PreactResizeObserver = /** @class */function (_super) {
+    __extends(PreactResizeObserver, _super);
+    function PreactResizeObserver(props) {
+        var _this = _super.call(this, props) || this;
+        _this.suppressResizeEvent = false;
+        _this.suppressReRender = false;
+        _this.style = {
+            position: 'absolute',
+            width: 0,
+            height: 0,
+            display: 'none'
+        };
+        _this.onResize = function (resizeEntries) {
+            var resizeCallback = _this.props.onResize;
+            if (_this.suppressResizeEvent) {
+                _this.suppressResizeEvent = false;
+                return;
+            }
+            if (typeof resizeCallback !== 'function') {
+                return;
+            }
+            resizeEntries.forEach(function (entry) {
+                var _a = entry.contentRect,
+                    width = _a.width,
+                    height = _a.height;
+                var resized = false;
+                if (_this.props.width && _this.currentWidth !== width) {
+                    resized = true;
+                    _this.currentWidth = width;
+                }
+                if (_this.props.height && _this.currentHeight !== height) {
+                    resized = true;
+                    _this.currentHeight = height;
+                }
+                if (resized) {
+                    resizeCallback(width, height);
+                }
+            });
+        };
+        _this.handleRef = function (el) {
+            _this.element = el;
+        };
+        _this.observer = new resize_observer_polyfill_1.default(_this.onResize);
+        return _this;
+    }
+    PreactResizeObserver.prototype.componentDidMount = function () {
+        var observedElement;
+        if (this.props.target) {
+            observedElement = this.props.target;
+        } else if (this.element && this.element.parentElement) {
+            observedElement = this.element.parentElement;
+        }
+        if (observedElement) {
+            this.observeElement(observedElement);
+        }
+        this.suppressReRender = true;
+    };
+    PreactResizeObserver.prototype.componentWillReceiveProps = function (nextProps) {
+        if (nextProps.target && nextProps.target !== this.props.target) {
+            this.observeElement(nextProps.target);
+        }
+    };
+    PreactResizeObserver.prototype.shouldComponentUpdate = function () {
+        return !this.suppressReRender;
+    };
+    PreactResizeObserver.prototype.observeElement = function (element) {
+        this.suppressResizeEvent = this.props.noInitial;
+        this.observer.disconnect();
+        this.observer.observe(element);
+    };
+    PreactResizeObserver.prototype.render = function () {
+        return preact_1.h("div", { ref: this.handleRef, style: this.style });
+    };
+    PreactResizeObserver.propTypes = {
+        onResize: PropTypes.func.isRequired,
+        width: PropTypes.bool,
+        height: PropTypes.bool,
+        noInitial: PropTypes.bool,
+        target: PropTypes.element
+    };
+    PreactResizeObserver.defaultProps = {
+        noInitial: false,
+        width: true,
+        height: true
+    };
+    return PreactResizeObserver;
+}(preact_1.Component);
+exports.default = PreactResizeObserver;
+
+/***/ }),
+
+/***/ "wRU+":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1800,6 +1740,66 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
+
+/***/ }),
+
+/***/ "wVGV":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var emptyFunction = __webpack_require__("UQex");
+var invariant = __webpack_require__("wRU+");
+var ReactPropTypesSecret = __webpack_require__("Asjh");
+
+module.exports = function () {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret) {
+      // It is still safe when called from React.
+      return;
+    }
+    invariant(false, 'Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use PropTypes.checkPropTypes() to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
+  };
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  };
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim
+  };
+
+  ReactPropTypes.checkPropTypes = emptyFunction;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
 
 /***/ })
 
