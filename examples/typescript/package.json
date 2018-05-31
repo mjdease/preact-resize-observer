@@ -10,12 +10,15 @@
     "dev": "preact watch",
     "lint": "eslint src",
     "link": "npm link preact-resize-observer",
-    "build-demo": "preact build --dest ../../docs/demo"
+    "build-demo": "NODE_ENV=production preact build --dest ../../docs/demo"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor",
     "rules": {
-      "indent": ["error", 2]
+      "indent": [
+        "error",
+        2
+      ]
     }
   },
   "eslintIgnore": [
@@ -30,6 +33,7 @@
   },
   "dependencies": {
     "preact": "^8.2.1",
-    "preact-compat": "^3.17.0"
+    "preact-compat": "^3.17.0",
+    "preact-resize-observer": "link:../../"
   }
 }

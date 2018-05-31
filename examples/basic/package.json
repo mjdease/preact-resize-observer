@@ -14,7 +14,10 @@
   "eslintConfig": {
     "extends": "eslint-config-synacor",
     "rules": {
-      "indent": ["error", 2]
+      "indent": [
+        "error",
+        2
+      ]
     }
   },
   "eslintIgnore": [
@@ -29,6 +32,7 @@
   "dependencies": {
     "preact": "^8.2.1",
     "preact-compat": "^3.17.0",
+    "preact-resize-observer": "link:../../",
     "prop-types": "15.6.1"
   }
 }
