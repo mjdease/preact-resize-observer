@@ -45,6 +45,10 @@ export default class App extends Component {
 
 Changelog
 ---
+0.1.1 (31/05/2018)
+* Fixed package dependencies
+* Fixed component types for Preact 8.2.9
+
 0.1.0 (20/03/2018)
 * Initial Release
 
