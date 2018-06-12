@@ -11,7 +11,7 @@ interface IAppState {
   childWidth: number;
   childHeight: number;
   observedElement?: Element;
-  noInitial: boolean;
+  initial: boolean;
   observeWidth: boolean;
   observeHeight: boolean;
 }
@@ -21,7 +21,7 @@ export default class App extends Component<{}, IAppState> {
   private childEl?: Element;
   private toggleObserveWidth: EventListener;
   private toggleObserveHeight: EventListener;
-  private toggleObserveNoInitial: EventListener;
+  private toggleObserveInitial: EventListener;
 
   constructor() {
     super();
@@ -32,14 +32,14 @@ export default class App extends Component<{}, IAppState> {
       childWidth: 0,
       childHeight: 0,
       observedElement: null,
-      noInitial: false,
+      initial: true,
       observeWidth: true,
       observeHeight: true,
     };
 
     this.toggleObserveWidth = this.toggleState.bind(this, 'observeWidth');
     this.toggleObserveHeight = this.toggleState.bind(this, 'observeHeight');
-    this.toggleObserveNoInitial = this.toggleState.bind(this, 'noInitial');
+    this.toggleObserveInitial = this.toggleState.bind(this, 'initial');
   }
 
   componentDidMount() {
@@ -80,7 +80,7 @@ export default class App extends Component<{}, IAppState> {
     });
   }
 
-  toggleState(key: 'observeWidth'|'observeHeight'|'noInitial') {
+  toggleState(key: 'observeWidth'|'observeHeight'|'initial') {
     this.setState({
       // https://github.com/Microsoft/TypeScript/issues/13948
       [key as any]: !this.state[key],
@@ -116,7 +116,7 @@ export default class App extends Component<{}, IAppState> {
               vertical={this.state.observeHeight}
               onResize={this.handleChildResize}
               element={this.state.observedElement}
-              noInitial={this.state.noInitial}
+              initial={this.state.initial}
               // Ensures normal html attrs are passed through
               className="test-resize-observer"
               style={childObserverStyle}
@@ -144,19 +144,19 @@ export default class App extends Component<{}, IAppState> {
             </div>
             <div className="option-container">
               <Checkbox
-                label="width"
+                label="horizontal"
                 onChange={this.toggleObserveWidth}
                 checked={this.state.observeWidth}
               />
               <Checkbox
-                label="height"
+                label="vertical"
                 onChange={this.toggleObserveHeight}
                 checked={this.state.observeHeight}
               />
               <Checkbox
-                label="noInitial"
-                onChange={this.toggleObserveNoInitial}
-                checked={this.state.noInitial}
+                label="initial"
+                onChange={this.toggleObserveInitial}
+                checked={this.state.initial}
               />
             </div>
           </div>

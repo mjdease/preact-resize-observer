@@ -7,7 +7,7 @@ export interface IPreactResizeObserverProps extends JSX.HTMLAttributes {
   innerRef?(element: Element): void;
   horizontal?: boolean;
   vertical?: boolean;
-  noInitial?: boolean;
+  initial?: boolean;
   element?: Element;
   tag?: keyof JSX.IntrinsicElements;
 }
@@ -23,13 +23,13 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     onResize: PropTypes.func.isRequired,
     horizontal: PropTypes.bool,
     vertical: PropTypes.bool,
-    noInitial: PropTypes.bool,
+    initial: PropTypes.bool,
     element: PropTypes.element,
     tag: PropTypes.string,
   };
 
   static defaultProps: Partial<IPreactResizeObserverProps> = {
-    noInitial: false,
+    initial: true,
     horizontal: true,
     vertical: true,
     tag: 'div',
@@ -67,7 +67,7 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
 
   private observeElement(element?: Element) {
     if (element) {
-      this.suppressResizeEvent = this.props.noInitial!;
+      this.suppressResizeEvent = !this.props.initial!;
       this.observer.disconnect();
       this.observer.observe(element);
     }
@@ -110,7 +110,7 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
 
   render() {
     const {
-      onResize, innerRef, horizontal, vertical, noInitial, element, tag, children, ...rest,
+      onResize, innerRef, horizontal, vertical, initial, element, tag, children, ...rest,
     } = this.props;
 
     return h(
