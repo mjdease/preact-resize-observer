@@ -1,13 +1,15 @@
-import { h, Component } from 'preact';
+import { h, Component, VNode } from 'preact';
 import ResizeObserver from 'resize-observer-polyfill';
 import * as PropTypes from 'prop-types';
 
-export interface IPreactResizeObserverProps {
+export interface IPreactResizeObserverProps extends JSX.HTMLAttributes {
   onResize(width: number, height: number): void;
-  width?: boolean;
-  height?: boolean;
+  innerRef?(element: Element): void;
+  horizontal?: boolean;
+  vertical?: boolean;
   noInitial?: boolean;
-  target?: Element;
+  element?: Element;
+  tag?: keyof JSX.IntrinsicElements;
 }
 
 export default class PreactResizeObserver extends Component<IPreactResizeObserverProps> {
@@ -16,26 +18,21 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
   private currentWidth?: number;
   private currentHeight?: number;
   private suppressResizeEvent: boolean = false;
-  private suppressReRender: boolean = false;
-  private style = {
-    position: 'absolute',
-    width: 0,
-    height: 0,
-    display: 'none',
-  };
 
   static propTypes: {[name in keyof IPreactResizeObserverProps]: any} = {
     onResize: PropTypes.func.isRequired,
-    width: PropTypes.bool,
-    height: PropTypes.bool,
+    horizontal: PropTypes.bool,
+    vertical: PropTypes.bool,
     noInitial: PropTypes.bool,
-    target: PropTypes.element,
+    element: PropTypes.element,
+    tag: PropTypes.string,
   };
 
   static defaultProps: Partial<IPreactResizeObserverProps> = {
     noInitial: false,
-    width: true,
-    height: true,
+    horizontal: true,
+    vertical: true,
+    tag: 'div',
   };
 
   constructor(props: IPreactResizeObserverProps) {
@@ -46,31 +43,34 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
 
   componentDidMount() {
     let observedElement: Element | undefined;
-    if (this.props.target) {
-      observedElement = this.props.target;
-    }  else if (this.element && this.element.parentElement) {
-      observedElement = this.element.parentElement;
+    if (this.props.element) {
+      observedElement = this.props.element;
+    }  else if (this.element) {
+      observedElement = this.element;
     }
     if (observedElement) {
       this.observeElement(observedElement);
     }
-    this.suppressReRender = true;
   }
 
   componentWillReceiveProps(nextProps: IPreactResizeObserverProps) {
-    if (nextProps.target && nextProps.target !== this.props.target) {
-      this.observeElement(nextProps.target);
+    if (nextProps.element) {
+      // Custom element was provided when we didn't have one before
+      if (nextProps.element !== this.props.element) {
+        this.observeElement(nextProps.element);
+      }
+    } else if (this.props.element) {
+      // No custom element provided but we had one previously
+      this.observeElement(this.element);
     }
   }
 
-  shouldComponentUpdate() {
-    return !this.suppressReRender;
-  }
-
-  private observeElement(element: Element) {
-    this.suppressResizeEvent = this.props.noInitial as boolean;
-    this.observer.disconnect();
-    this.observer.observe(element);
+  private observeElement(element?: Element) {
+    if (element) {
+      this.suppressResizeEvent = this.props.noInitial!;
+      this.observer.disconnect();
+      this.observer.observe(element);
+    }
   }
 
   private onResize = (resizeEntries: ResizeObserverEntry[]) => {
@@ -85,11 +85,11 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     resizeEntries.forEach((entry) => {
       const { width, height } = entry.contentRect;
       let resized = false;
-      if (this.props.width && this.currentWidth !== width) {
+      if (this.props.horizontal && this.currentWidth !== width) {
         resized = true;
         this.currentWidth = width;
       }
-      if (this.props.height && this.currentHeight !== height) {
+      if (this.props.vertical && this.currentHeight !== height) {
         resized = true;
         this.currentHeight = height;
       }
@@ -100,12 +100,26 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
   }
 
   private handleRef = (el?:Element) => {
+    const { innerRef } = this.props;
     this.element = el;
+
+    if (this.element && innerRef && typeof innerRef === 'function') {
+      innerRef(this.element);
+    }
   }
 
   render() {
-    return (
-      <div ref={this.handleRef} style={this.style} />
+    const {
+      onResize, innerRef, horizontal, vertical, noInitial, element, tag, children, ...rest,
+    } = this.props;
+
+    return h(
+      tag!,
+      {
+        ref: this.handleRef,
+        ...rest,
+      },
+      children!,
     );
   }
 }
