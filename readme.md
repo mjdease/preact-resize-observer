@@ -19,15 +19,15 @@ import ResizeObserver from 'preact-resize-observer';
 
 export default class App extends Component {
   handleResize = (width, height) => {
-    // Current width and height of the #app element
+    // Current width and height of the .fluid-content element
     console.log(`width: ${width}, height: ${height}`)
   }
 
   render() {
     return (
-      <div id="app">
-        <ResizeObserver onResize={this.handleResize} />
-      </div>
+      <ResizeObserver class="fluid-content" onResize={this.handleResize}>
+        <p>Content</p>
+      </ResizeObserver>
     );
   }
 }
@@ -37,11 +37,12 @@ export default class App extends Component {
 
 | Property | Type | Default | Description |
 |:---|:---|:---:|:---|
-| onResize | Function | | Required. Callback invoked whenever the observed element changes size. `(width: number, height: number): void` |
-| target | Element | | The element to observe the size of. If not specified the component's parent element will be observed. |
-| width | Boolean | true | Observe changes to the width |
-| height | Boolean | true | Observe changes to the height |
-| noInitial | Boolean | false | Suppress `onResize` being invoked when this component mounts.
+| `onResize` | Function | | Required. Callback invoked whenever the observed element changes size. `(width: number, height: number): void` |
+| `horizontal` | boolean | `true` | Observe changes to the width |
+| `vertical` | boolean | `true` | Observe changes to the height |
+| `tag` | string | `'div'` | The HTML tag to render this component as. |
+| `element` | Element | | The element to observe the size of. If not specified the element rendered by this component will be observed |
+| `initial` | boolean | `true` | Controls if `onResize` will be invoked when the element is first observed (typically on mount). Set to `false` to disable this initial call.
 
 Changelog
 ---
