@@ -24,12 +24,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <div id="app">
+      <ResizeObserver id="app" onResize={this.handleResize}>
         <div className="stats">
           <h2>{this.state.width} x {this.state.height}</h2>
         </div>
-        <ResizeObserver onResize={this.handleResize} />
-      </div>
+      </ResizeObserver>
     );
   }
 }
