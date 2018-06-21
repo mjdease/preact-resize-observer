@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 1px 6px #ccc;
+  z-index: 1;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    color: #333;
+    text-align: center;
+    padding: 10px 20px;
+  }
+
+  &__title {
+    flex-grow: 1;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  &__button {
+    background: #444;
+    color: #eee;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 100ms linear;
+
+    &:hover {
+      background: #222;
+    }
+  }
+
+  &__icon {
+    padding-right: 4px;
+  }
+}

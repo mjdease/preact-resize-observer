@@ -1,0 +1,15 @@
+.divider {
+  background: #bbb;
+
+  &--horizontal {
+    height: 100%;
+    width: calc(100% - 60px);
+    margin: auto;
+  }
+  &--vertical {
+    height: calc(100% - 60px);;
+    width: 100%;
+    position: relative;
+    top: 30px;
+  }
+}
