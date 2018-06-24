@@ -66,6 +66,20 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "3Xyg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "62dd139f47bab857ad425882005458eb.jpg";
+
+/***/ }),
+
+/***/ "3mJm":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "5D9O":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -92,6 +106,86 @@ if (false) {
   // http://fb.me/prop-types-in-prod
   module.exports = __webpack_require__("wVGV")();
 }
+
+/***/ }),
+
+/***/ "6bVh":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "9kFE":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "9qb7":
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames() {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {
+		window.classNames = classNames;
+	}
+})();
+
+/***/ }),
+
+/***/ "AC6j":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -1151,6 +1245,13 @@ var index = function () {
 
 /***/ }),
 
+/***/ "DOAq":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "IPw9":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1166,139 +1267,519 @@ exports.default = PreactResizeObserver_1.default;
 
 /***/ }),
 
+/***/ "IQR+":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _preact = __webpack_require__("KM04");
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+var Share = function Share(_ref) {
+  var _ref$color = _ref.color,
+      color = _ref$color === undefined ? 'currentColor' : _ref$color,
+      _ref$size = _ref.size,
+      size = _ref$size === undefined ? '24' : _ref$size,
+      otherProps = _objectWithoutProperties(_ref, ['color', 'size']);
+
+  return (0, _preact.h)('svg', _extends({
+    xmlns: 'http://www.w3.org/2000/svg',
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: color,
+    'stroke-width': '2',
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round'
+  }, otherProps), (0, _preact.h)('path', { d: 'M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8' }), (0, _preact.h)('polyline', { points: '16 6 12 2 8 6' }), (0, _preact.h)('line', { x1: '12', y1: '2', x2: '12', y2: '15' }));
+};
+
+exports.default = Share;
+
+/***/ }),
+
 /***/ "JkW7":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
+// EXTERNAL MODULE: ../node_modules/normalize.css/normalize.css
+var normalize = __webpack_require__("DOAq");
+var normalize_default = /*#__PURE__*/__webpack_require__.n(normalize);
+
+// EXTERNAL MODULE: ./style.scss
+var style_0 = __webpack_require__("3mJm");
+var style_default = /*#__PURE__*/__webpack_require__.n(style_0);
+
 // EXTERNAL MODULE: ../node_modules/preact/dist/preact.min.js
 var preact_min = __webpack_require__("KM04");
 var preact_min_default = /*#__PURE__*/__webpack_require__.n(preact_min);
 
+// EXTERNAL MODULE: ../node_modules/preact-feather/dist/icons/github.js
+var github = __webpack_require__("S1eh");
+var github_default = /*#__PURE__*/__webpack_require__.n(github);
+
+// EXTERNAL MODULE: ../node_modules/preact-feather/dist/icons/info.js
+var info = __webpack_require__("L34Z");
+var info_default = /*#__PURE__*/__webpack_require__.n(info);
+
+// EXTERNAL MODULE: ./comps/NavBar/NavBar.scss
+var NavBar = __webpack_require__("ZCLg");
+var NavBar_default = /*#__PURE__*/__webpack_require__.n(NavBar);
+
+// CONCATENATED MODULE: ./comps/NavBar/index.js
+
+
+
+
+
+
+var NavBar__ref = Object(preact_min["h"])(
+  'div',
+  { className: 'navbar' },
+  Object(preact_min["h"])(
+    'div',
+    { className: 'navbar__item navbar__title' },
+    Object(preact_min["h"])(
+      'h2',
+      null,
+      'Preact Resize Observer'
+    )
+  ),
+  Object(preact_min["h"])(
+    'div',
+    { className: 'navbar__item', title: 'Hold any key to disable resizing' },
+    Object(preact_min["h"])(info_default.a, null)
+  ),
+  Object(preact_min["h"])(
+    'a',
+    {
+      className: 'navbar__item navbar__button',
+      href: 'https://github.com/mjdease/preact-resize-observer'
+    },
+    Object(preact_min["h"])(github_default.a, { className: 'navbar__icon' }),
+    'Github'
+  )
+);
+
+var NavBar_NavBar = function NavBar() {
+  return NavBar__ref;
+};
+
+/* harmony default export */ var comps_NavBar = (NavBar_NavBar);
+// EXTERNAL MODULE: ../node_modules/classnames/index.js
+var classnames = __webpack_require__("9qb7");
+var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
+
+// EXTERNAL MODULE: ./comps/Divider/Divider.scss
+var Divider_Divider = __webpack_require__("6bVh");
+var Divider_default = /*#__PURE__*/__webpack_require__.n(Divider_Divider);
+
+// CONCATENATED MODULE: ./comps/Divider/index.js
+
+
+
+
+
+var comps_Divider_Divider = function Divider(props) {
+  var classes = classnames_default()('divider', props.vertical ? 'divider--vertical' : 'divider--horizontal');
+  return Object(preact_min["h"])('div', { className: classes });
+};
+
+/* harmony default export */ var comps_Divider = (comps_Divider_Divider);
 // EXTERNAL MODULE: /Users/mdease/dev/preact-resize-observer/dev/index.js
 var dev = __webpack_require__("IPw9");
 var dev_default = /*#__PURE__*/__webpack_require__.n(dev);
 
-// EXTERNAL MODULE: ./App.css
-var App_0 = __webpack_require__("S03M");
-var App_default = /*#__PURE__*/__webpack_require__.n(App_0);
+// EXTERNAL MODULE: ../node_modules/preact-feather/dist/icons/heart.js
+var heart = __webpack_require__("N47W");
+var heart_default = /*#__PURE__*/__webpack_require__.n(heart);
 
-// CONCATENATED MODULE: ./App.tsx
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+// EXTERNAL MODULE: ../node_modules/preact-feather/dist/icons/download.js
+var download = __webpack_require__("cm7T");
+var download_default = /*#__PURE__*/__webpack_require__.n(download);
+
+// EXTERNAL MODULE: ../node_modules/preact-feather/dist/icons/message-square.js
+var message_square = __webpack_require__("wPnm");
+var message_square_default = /*#__PURE__*/__webpack_require__.n(message_square);
+
+// EXTERNAL MODULE: ../node_modules/preact-feather/dist/icons/share.js
+var share = __webpack_require__("IQR+");
+var share_default = /*#__PURE__*/__webpack_require__.n(share);
+
+// EXTERNAL MODULE: ./comps/Action/Action.scss
+var Action_Action = __webpack_require__("9kFE");
+var Action_default = /*#__PURE__*/__webpack_require__.n(Action_Action);
+
+// CONCATENATED MODULE: ./comps/Action/index.js
+
+
+
+var comps_Action_Action = function Action(_ref) {
+  var Icon = _ref.icon,
+      label = _ref.label;
+  return Object(preact_min["h"])(
+    "div",
+    { className: "action" },
+    Object(preact_min["h"])(Icon, { className: "action__icon", size: 18 }),
+    Object(preact_min["h"])(
+      "div",
+      { className: "action__label" },
+      label
+    )
+  );
+};
+
+/* harmony default export */ var comps_Action = (comps_Action_Action);
+// EXTERNAL MODULE: ./comps/ActionBar/ActionBar.scss
+var ActionBar_ActionBar = __webpack_require__("AC6j");
+var ActionBar_default = /*#__PURE__*/__webpack_require__.n(ActionBar_ActionBar);
+
+// CONCATENATED MODULE: ./comps/ActionBar/index.js
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+
+
+
+
+
+
+
+
+
+
+
+var actions = [{
+  icon: heart_default.a,
+  label: 'Like'
+}, {
+  icon: message_square_default.a,
+  label: 'Comment'
+}, {
+  icon: share_default.a,
+  label: 'Share'
+}, {
+  icon: download_default.a,
+  label: 'Download'
+}];
+
+var comps_ActionBar_ActionBar = function ActionBar(props) {
+  var classes = classnames_default()('actionbar', 'actionbar--' + (props.vertical ? 'vertical' : 'horizontal'), props.className);
+  return Object(preact_min["h"])(
+    'div',
+    { className: classes },
+    actions.map(function (action) {
+      return Object(preact_min["h"])(comps_Action, _extends({ key: action.label }, action));
+    })
+  );
+};
+
+/* harmony default export */ var comps_ActionBar = (comps_ActionBar_ActionBar);
+// EXTERNAL MODULE: ./comps/Photo/Photo.scss
+var Photo_Photo = __webpack_require__("fpEB");
+var Photo_default = /*#__PURE__*/__webpack_require__.n(Photo_Photo);
+
+// CONCATENATED MODULE: ./comps/Photo/index.js
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+var comps_Photo_Photo = function (_Component) {
+  _inherits(Photo, _Component);
+
+  function Photo() {
+    _classCallCheck(this, Photo);
+
+    var _this = _possibleConstructorReturn(this, _Component.call(this));
+
+    _this.handleResize = function (width, height) {
+      _this.setState({
+        width: width,
+        height: height
+      });
     };
-})();
+
+    _this.state = {
+      width: 0,
+      height: 0
+    };
+    return _this;
+  }
+
+  Photo.prototype.render = function render() {
+    var width = Math.round(this.state.width);
+    var height = Math.round(this.state.height);
+
+    return Object(preact_min["h"])(
+      'div',
+      { 'class': 'photo' },
+      Object(preact_min["h"])(
+        dev_default.a,
+        {
+          tag: 'a',
+          className: 'photo__container',
+          onResize: this.handleResize,
+          href: this.props.sourceUrl,
+          target: '_blank',
+          rel: 'noopener'
+        },
+        Object(preact_min["h"])('img', { src: this.props.src, alt: '', className: 'photo__image' }),
+        Object(preact_min["h"])(
+          'div',
+          { className: 'photo__size' },
+          width,
+          ' x ',
+          height
+        ),
+        Object(preact_min["h"])(comps_ActionBar, { className: 'photo__actions', vertical: height / width > 1 })
+      )
+    );
+  };
+
+  return Photo;
+}(preact_min["Component"]);
+
+
+// EXTERNAL MODULE: ./comps/Gallery/Gallery.scss
+var Gallery_Gallery = __webpack_require__("l38y");
+var Gallery_default = /*#__PURE__*/__webpack_require__.n(Gallery_Gallery);
+
+// EXTERNAL MODULE: ./images/branch.jpg
+var branch = __webpack_require__("OAiq");
+var branch_default = /*#__PURE__*/__webpack_require__.n(branch);
+
+// EXTERNAL MODULE: ./images/snow.jpg
+var snow = __webpack_require__("NkNo");
+var snow_default = /*#__PURE__*/__webpack_require__.n(snow);
+
+// EXTERNAL MODULE: ./images/tulip.jpg
+var tulip = __webpack_require__("3Xyg");
+var tulip_default = /*#__PURE__*/__webpack_require__.n(tulip);
+
+// EXTERNAL MODULE: ./images/bird.jpg
+var bird = __webpack_require__("SnzI");
+var bird_default = /*#__PURE__*/__webpack_require__.n(bird);
+
+// CONCATENATED MODULE: ./images/index.js
 
 
 
-var App_App = /** @class */ (function (_super) {
-    __extends(App, _super);
-    function App() {
-        var _this = _super.call(this) || this;
-        _this.handleResize = function (width, height) {
-            _this.setState({
-                width: width,
-                height: height,
-            });
-        };
-        _this.handleChildResize = function (childWidth, childHeight) {
-            _this.setState({
-                childWidth: childWidth,
-                childHeight: childHeight,
-            });
-        };
-        _this.observeApp = function () {
-            _this.setState({
-                observedElement: _this.appEl,
-            });
-        };
-        _this.observeChild = function () {
-            _this.setState({
-                observedElement: _this.childEl,
-            });
-        };
-        _this.state = {
-            width: 0,
-            height: 0,
-            childWidth: 0,
-            childHeight: 0,
-            observedElement: null,
-            noInitial: false,
-            observeWidth: true,
-            observeHeight: true,
-        };
-        _this.toggleObserveWidth = _this.toggleState.bind(_this, 'observeWidth');
-        _this.toggleObserveHeight = _this.toggleState.bind(_this, 'observeHeight');
-        _this.toggleObserveNoInitial = _this.toggleState.bind(_this, 'noInitial');
-        return _this;
-    }
-    App.prototype.componentDidMount = function () {
-        this.setState({
-            observedElement: this.childEl,
+
+// CONCATENATED MODULE: ./comps/Gallery/index.js
+
+
+function Gallery__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function Gallery__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function Gallery__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+var Gallery__ref = Object(preact_min["h"])(comps_Divider, { vertical: true });
+
+var _ref2 = Object(preact_min["h"])(comps_Divider, null);
+
+var _ref3 = Object(preact_min["h"])('div', null);
+
+var _ref4 = Object(preact_min["h"])(comps_Divider, null);
+
+var _ref5 = Object(preact_min["h"])(comps_Divider, { vertical: true });
+
+var comps_Gallery_Gallery = function (_Component) {
+  Gallery__inherits(Gallery, _Component);
+
+  function Gallery() {
+    Gallery__classCallCheck(this, Gallery);
+
+    var _this = Gallery__possibleConstructorReturn(this, _Component.call(this));
+
+    _this.handlePointerMove = function (event) {
+      if (_this.galleryEl && _this.followMouse) {
+        var pointerPos = getPointerPosition(event);
+        var galleryRect = _this.galleryEl.getBoundingClientRect();
+        _this.setState({
+          left: (pointerPos.x - galleryRect.left) / galleryRect.width,
+          top: (pointerPos.y - galleryRect.top) / galleryRect.height
         });
+      }
     };
-    App.prototype.toggleState = function (key) {
-        this.setState((_a = {},
-            // https://github.com/Microsoft/TypeScript/issues/13948
-            _a[key] = !this.state[key],
-            _a));
-        var _a;
-    };
-    App.prototype.render = function () {
-        var _this = this;
-        return (Object(preact_min["h"])("div", { id: "app", ref: function (el) { _this.appEl = el; } },
-            Object(preact_min["h"])("div", { className: "stats" },
-                Object(preact_min["h"])("h3", null, "Parent Observer"),
-                Object(preact_min["h"])("h2", null,
-                    this.state.width,
-                    " x ",
-                    this.state.height)),
-            Object(preact_min["h"])(dev_default.a, { onResize: this.handleResize }),
-            Object(preact_min["h"])("div", { className: "child", ref: function (el) { _this.childEl = el; } },
-                Object(preact_min["h"])("div", { className: "grandchild" },
-                    Object(preact_min["h"])("div", { className: "stats" },
-                        Object(preact_min["h"])("h3", null, "Custom Element Observer"),
-                        Object(preact_min["h"])("h2", null,
-                            this.state.childWidth,
-                            " x ",
-                            this.state.childHeight)),
-                    Object(preact_min["h"])(dev_default.a, { height: this.state.observeHeight, width: this.state.observeWidth, onResize: this.handleChildResize, target: this.state.observedElement, noInitial: this.state.noInitial }),
-                    Object(preact_min["h"])("div", { className: "option-container" },
-                        Object(preact_min["h"])("label", { className: "option-label" },
-                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observedElement === this.appEl, onChange: this.observeApp }),
-                            "Page"),
-                        Object(preact_min["h"])("label", { className: "option-label" },
-                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observedElement === this.childEl, onChange: this.observeChild }),
-                            "Child")),
-                    Object(preact_min["h"])("div", { className: "option-container" },
-                        Object(preact_min["h"])("label", { className: "option-label" },
-                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observeWidth, onChange: this.toggleObserveWidth }),
-                            "width"),
-                        Object(preact_min["h"])("label", { className: "option-label" },
-                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.observeHeight, onChange: this.toggleObserveHeight }),
-                            "height"),
-                        Object(preact_min["h"])("label", { className: "option-label" },
-                            Object(preact_min["h"])("input", { type: "checkbox", checked: this.state.noInitial, onChange: this.toggleObserveNoInitial }),
-                            "noInitial"))))));
-    };
-    return App;
-}(preact_min["Component"]));
-/* harmony default export */ var App_1 = (App_App);
 
+    _this.followMouse = true;
+
+    _this.state = {
+      left: 0.5,
+      top: 0.5
+    };
+
+    _this.follow = _this.toggleMouseFollow.bind(_this, true);
+    _this.unfollow = _this.toggleMouseFollow.bind(_this, false);
+    return _this;
+  }
+
+  Gallery.prototype.componentDidMount = function componentDidMount() {
+    document.addEventListener('keydown', this.unfollow, false);
+    document.addEventListener('keyup', this.follow, false);
+  };
+
+  Gallery.prototype.componentWillUnmount = function componentWillUnmount() {
+    document.removeEventListener('keydown', this.unfollow, false);
+    document.removeEventListener('keyup', this.follow, false);
+  };
+
+  Gallery.prototype.toggleMouseFollow = function toggleMouseFollow(enabled) {
+    this.followMouse = enabled;
+  };
+
+  Gallery.prototype.render = function render() {
+    var _this2 = this;
+
+    var _state = this.state,
+        left = _state.left,
+        top = _state.top;
+
+    var style = {
+      gallery: {
+        // 3x3 grid where the middle colum and row are 1px wide dividers
+        gridTemplateColumns: left + 'fr 1px ' + (1 - left) + 'fr',
+        gridTemplateRows: top + 'fr 1px ' + (1 - top) + 'fr'
+      }
+    };
+
+    return Object(preact_min["h"])(
+      'div',
+      {
+        'class': 'gallery',
+        onMouseMove: this.handlePointerMove,
+        onTouchDown: this.handlePointerMove,
+        onTouchMove: this.handlePointerMove,
+        ref: function ref(el) {
+          return _this2.galleryEl = el;
+        },
+        style: style.gallery
+      },
+      Object(preact_min["h"])(comps_Photo_Photo, {
+        src: branch_default.a,
+        sourceUrl: 'https://www.flickr.com/photos/tommrazek/23281006039/'
+      }),
+      Gallery__ref,
+      Object(preact_min["h"])(comps_Photo_Photo, {
+        src: tulip_default.a,
+        sourceUrl: 'https://www.flickr.com/photos/bonguri/8667986348/'
+      }),
+      _ref2,
+      _ref3,
+      _ref4,
+      Object(preact_min["h"])(comps_Photo_Photo, {
+        src: snow_default.a,
+        sourceUrl: 'https://www.flickr.com/photos/28638567@N02/8559940536/'
+      }),
+      _ref5,
+      Object(preact_min["h"])(comps_Photo_Photo, {
+        src: bird_default.a,
+        sourceUrl: 'https://www.flickr.com/photos/79452129@N02/16266318687/'
+      })
+    );
+  };
+
+  return Gallery;
+}(preact_min["Component"]);
+
+
+
+
+function getPointerPosition(event) {
+  var point = {
+    x: 0,
+    y: 0
+  };
+
+  if (typeof event.pageX !== 'undefined') {
+    point = {
+      x: event.pageX,
+      y: event.pageY
+    };
+  }
+  // Prefer touch coordinates if present
+  if (event.touches && event.touches.length) {
+    point = {
+      x: event.touches[0].pageX,
+      y: event.touches[0].pageY
+    };
+  }
+
+  return point;
+}
+// EXTERNAL MODULE: ./comps/App/App.scss
+var App = __webpack_require__("PEXe");
+var App_default = /*#__PURE__*/__webpack_require__.n(App);
+
+// CONCATENATED MODULE: ./comps/App/index.js
+
+
+
+
+
+
+var App__ref = Object(preact_min["h"])(
+  'div',
+  { className: 'app' },
+  Object(preact_min["h"])(comps_NavBar, null),
+  Object(preact_min["h"])(comps_Gallery_Gallery, null)
+);
+
+var App_App = function App() {
+  return App__ref;
+};
+
+/* harmony default export */ var comps_App = (App_App);
 // CONCATENATED MODULE: ./index.js
-// .js entry point required for preact-cli
-// See - https://github.com/wub/preact-cli-plugin-typescript/issues/3
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "default", function() { return comps_App; });
 
 
 
-/* harmony default export */ var index = __webpack_exports__["default"] = (App_1);
+
+
 
 /***/ }),
 
@@ -1505,10 +1986,187 @@ var App_App = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ "S03M":
+/***/ "L34Z":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _preact = __webpack_require__("KM04");
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+var Info = function Info(_ref) {
+  var _ref$color = _ref.color,
+      color = _ref$color === undefined ? 'currentColor' : _ref$color,
+      _ref$size = _ref.size,
+      size = _ref$size === undefined ? '24' : _ref$size,
+      otherProps = _objectWithoutProperties(_ref, ['color', 'size']);
+
+  return (0, _preact.h)('svg', _extends({
+    xmlns: 'http://www.w3.org/2000/svg',
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: color,
+    'stroke-width': '2',
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round'
+  }, otherProps), (0, _preact.h)('circle', { cx: '12', cy: '12', r: '10' }), (0, _preact.h)('line', { x1: '12', y1: '16', x2: '12', y2: '12' }), (0, _preact.h)('line', { x1: '12', y1: '8', x2: '12', y2: '8' }));
+};
+
+exports.default = Info;
+
+/***/ }),
+
+/***/ "N47W":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _preact = __webpack_require__("KM04");
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+var Heart = function Heart(_ref) {
+  var _ref$color = _ref.color,
+      color = _ref$color === undefined ? 'currentColor' : _ref$color,
+      _ref$size = _ref.size,
+      size = _ref$size === undefined ? '24' : _ref$size,
+      otherProps = _objectWithoutProperties(_ref, ['color', 'size']);
+
+  return (0, _preact.h)('svg', _extends({
+    xmlns: 'http://www.w3.org/2000/svg',
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: color,
+    'stroke-width': '2',
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round'
+  }, otherProps), (0, _preact.h)('path', { d: 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z' }));
+};
+
+exports.default = Heart;
+
+/***/ }),
+
+/***/ "NkNo":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "43b2e49b9189a6eeb1f252534464b3dc.jpg";
+
+/***/ }),
+
+/***/ "OAiq":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "3974478a736315805b123f5d9506640d.jpg";
+
+/***/ }),
+
+/***/ "PEXe":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "S1eh":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _preact = __webpack_require__("KM04");
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+var Github = function Github(_ref) {
+  var _ref$color = _ref.color,
+      color = _ref$color === undefined ? 'currentColor' : _ref$color,
+      _ref$size = _ref.size,
+      size = _ref$size === undefined ? '24' : _ref$size,
+      otherProps = _objectWithoutProperties(_ref, ['color', 'size']);
+
+  return (0, _preact.h)('svg', _extends({
+    xmlns: 'http://www.w3.org/2000/svg',
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: color,
+    'stroke-width': '2',
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round'
+  }, otherProps), (0, _preact.h)('path', { d: 'M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22' }));
+};
+
+exports.default = Github;
+
+/***/ }),
+
+/***/ "SnzI":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "db2e40df1f9ffe761102d542aabf57e9.jpg";
 
 /***/ }),
 
@@ -1577,6 +2235,23 @@ var __extends = this && this.__extends || function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 }();
+var __assign = this && this.__assign || Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) {
+            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+    }
+    return t;
+};
+var __rest = this && this.__rest || function (s, e) {
+    var t = {};
+    for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+    }if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+        if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]];
+    }return t;
+};
 var __importDefault = this && this.__importDefault || function (mod) {
     return mod && mod.__esModule ? mod : { "default": mod };
 };
@@ -1597,13 +2272,6 @@ var PreactResizeObserver = /** @class */function (_super) {
     function PreactResizeObserver(props) {
         var _this = _super.call(this, props) || this;
         _this.suppressResizeEvent = false;
-        _this.suppressReRender = false;
-        _this.style = {
-            position: 'absolute',
-            width: 0,
-            height: 0,
-            display: 'none'
-        };
         _this.onResize = function (resizeEntries) {
             var resizeCallback = _this.props.onResize;
             if (_this.suppressResizeEvent) {
@@ -1618,11 +2286,11 @@ var PreactResizeObserver = /** @class */function (_super) {
                     width = _a.width,
                     height = _a.height;
                 var resized = false;
-                if (_this.props.width && _this.currentWidth !== width) {
+                if (_this.props.horizontal && _this.currentWidth !== width) {
                     resized = true;
                     _this.currentWidth = width;
                 }
-                if (_this.props.height && _this.currentHeight !== height) {
+                if (_this.props.vertical && _this.currentHeight !== height) {
                     resized = true;
                     _this.currentHeight = height;
                 }
@@ -1632,54 +2300,199 @@ var PreactResizeObserver = /** @class */function (_super) {
             });
         };
         _this.handleRef = function (el) {
+            var innerRef = _this.props.innerRef;
             _this.element = el;
+            if (_this.element && innerRef && typeof innerRef === 'function') {
+                innerRef(_this.element);
+            }
         };
         _this.observer = new resize_observer_polyfill_1.default(_this.onResize);
         return _this;
     }
     PreactResizeObserver.prototype.componentDidMount = function () {
         var observedElement;
-        if (this.props.target) {
-            observedElement = this.props.target;
-        } else if (this.element && this.element.parentElement) {
-            observedElement = this.element.parentElement;
+        if (this.props.element) {
+            observedElement = this.props.element;
+        } else if (this.element) {
+            observedElement = this.element;
         }
         if (observedElement) {
             this.observeElement(observedElement);
         }
-        this.suppressReRender = true;
     };
     PreactResizeObserver.prototype.componentWillReceiveProps = function (nextProps) {
-        if (nextProps.target && nextProps.target !== this.props.target) {
-            this.observeElement(nextProps.target);
+        if (nextProps.element) {
+            // Custom element was provided when we didn't have one before
+            if (nextProps.element !== this.props.element) {
+                this.observeElement(nextProps.element);
+            }
+        } else if (this.props.element) {
+            // No custom element provided but we had one previously
+            this.observeElement(this.element);
         }
     };
-    PreactResizeObserver.prototype.shouldComponentUpdate = function () {
-        return !this.suppressReRender;
-    };
     PreactResizeObserver.prototype.observeElement = function (element) {
-        this.suppressResizeEvent = this.props.noInitial;
-        this.observer.disconnect();
-        this.observer.observe(element);
+        if (element) {
+            this.suppressResizeEvent = !this.props.initial;
+            this.observer.disconnect();
+            this.observer.observe(element);
+        }
     };
     PreactResizeObserver.prototype.render = function () {
-        return preact_1.h("div", { ref: this.handleRef, style: this.style });
+        var _a = this.props,
+            onResize = _a.onResize,
+            innerRef = _a.innerRef,
+            horizontal = _a.horizontal,
+            vertical = _a.vertical,
+            initial = _a.initial,
+            element = _a.element,
+            tag = _a.tag,
+            children = _a.children,
+            rest = __rest(_a, ["onResize", "innerRef", "horizontal", "vertical", "initial", "element", "tag", "children"]);
+        return preact_1.h(tag, __assign({ ref: this.handleRef }, rest), children);
     };
     PreactResizeObserver.propTypes = {
         onResize: PropTypes.func.isRequired,
-        width: PropTypes.bool,
-        height: PropTypes.bool,
-        noInitial: PropTypes.bool,
-        target: PropTypes.element
+        horizontal: PropTypes.bool,
+        vertical: PropTypes.bool,
+        initial: PropTypes.bool,
+        element: PropTypes.element,
+        tag: PropTypes.string
     };
     PreactResizeObserver.defaultProps = {
-        noInitial: false,
-        width: true,
-        height: true
+        initial: true,
+        horizontal: true,
+        vertical: true,
+        tag: 'div'
     };
     return PreactResizeObserver;
 }(preact_1.Component);
 exports.default = PreactResizeObserver;
+
+/***/ }),
+
+/***/ "ZCLg":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "cm7T":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _preact = __webpack_require__("KM04");
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+var Download = function Download(_ref) {
+  var _ref$color = _ref.color,
+      color = _ref$color === undefined ? 'currentColor' : _ref$color,
+      _ref$size = _ref.size,
+      size = _ref$size === undefined ? '24' : _ref$size,
+      otherProps = _objectWithoutProperties(_ref, ['color', 'size']);
+
+  return (0, _preact.h)('svg', _extends({
+    xmlns: 'http://www.w3.org/2000/svg',
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: color,
+    'stroke-width': '2',
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round'
+  }, otherProps), (0, _preact.h)('path', { d: 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4' }), (0, _preact.h)('polyline', { points: '7 10 12 15 17 10' }), (0, _preact.h)('line', { x1: '12', y1: '15', x2: '12', y2: '3' }));
+};
+
+exports.default = Download;
+
+/***/ }),
+
+/***/ "fpEB":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "l38y":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "wPnm":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _preact = __webpack_require__("KM04");
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+var MessageSquare = function MessageSquare(_ref) {
+  var _ref$color = _ref.color,
+      color = _ref$color === undefined ? 'currentColor' : _ref$color,
+      _ref$size = _ref.size,
+      size = _ref$size === undefined ? '24' : _ref$size,
+      otherProps = _objectWithoutProperties(_ref, ['color', 'size']);
+
+  return (0, _preact.h)('svg', _extends({
+    xmlns: 'http://www.w3.org/2000/svg',
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: color,
+    'stroke-width': '2',
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round'
+  }, otherProps), (0, _preact.h)('path', { d: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' }));
+};
+
+exports.default = MessageSquare;
 
 /***/ }),
 
