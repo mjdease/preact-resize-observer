@@ -2,11 +2,14 @@
   "name": "preact-resize-observer",
   "version": "0.1.1",
   "description": "",
-  "main": "lib/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "scripts": {
     "start": "tsc --outDir dev/ --watch",
     "build": "tsc --outDir dev/",
-    "release": "tsc --outDir lib/",
+    "release": "npm run release:cjs && npm run release:esm",
+    "release:cjs": "tsc --module commonjs --outDir dist/cjs/",
+    "release:esm": "tsc --module es2015 --outDir dist/esm/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
