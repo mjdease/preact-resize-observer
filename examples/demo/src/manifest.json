@@ -1,9 +1,9 @@
 {
-  "name": "demo",
-  "short_name": "demo",
-  "start_url": "/",
+  "name": "Preact Resize Observer",
+  "short_name": "Preact Resize Observer",
+  "start_url": "/preact-resize-observer/demo/",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "background_color": "#fff",
   "theme_color": "#673ab8",
   "icons": [

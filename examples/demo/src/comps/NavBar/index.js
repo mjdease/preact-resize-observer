@@ -1,4 +1,5 @@
-import { Github, Info } from 'preact-feather';
+import Github from 'preact-feather/dist/icons/github';
+import Info from 'preact-feather/dist/icons/info';
 
 import './NavBar.scss';
 

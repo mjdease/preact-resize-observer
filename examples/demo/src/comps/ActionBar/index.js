@@ -1,4 +1,7 @@
-import { Heart, Download, MessageSquare, Share } from 'preact-feather';
+import Heart from 'preact-feather/dist/icons/heart';
+import Download from 'preact-feather/dist/icons/download';
+import MessageSquare from 'preact-feather/dist/icons/message-square';
+import Share from 'preact-feather/dist/icons/share';
 import classnames from 'classnames';
 
 import Action from '../Action';

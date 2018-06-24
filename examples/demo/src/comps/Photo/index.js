@@ -34,6 +34,7 @@ export default class Photo extends Component {
           onResize={this.handleResize}
           href={this.props.sourceUrl}
           target="_blank"
+          rel="noopener"
         >
           <img src={this.props.src} alt="" className="photo__image" />
           <div className="photo__size">
