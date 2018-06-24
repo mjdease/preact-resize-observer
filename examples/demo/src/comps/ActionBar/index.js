@@ -27,8 +27,8 @@ const actions = [
 const ActionBar = props => {
   const classes = classnames(
     'actionbar',
-    props.className,
-    `actionbar--${props.vertical ? 'vertical' : 'horizontal'}`
+    `actionbar--${props.vertical ? 'vertical' : 'horizontal'}`,
+    props.className
   );
   return (
     <div className={classes}>

@@ -14,8 +14,8 @@ export default class Gallery extends Component {
     this.followMouse = true;
 
     this.state = {
-      left: 50,
-      top: 50
+      left: 0.5,
+      top: 0.5
     };
 
     this.follow = this.toggleMouseFollow.bind(this, true);
@@ -51,6 +51,7 @@ export default class Gallery extends Component {
     const { left, top } = this.state;
     const style = {
       gallery: {
+        // 3x3 grid where the middle colum and row are 1px wide dividers
         gridTemplateColumns: `${left}fr 1px ${1 - left}fr`,
         gridTemplateRows: `${top}fr 1px ${1 - top}fr`
       }
@@ -74,9 +75,9 @@ export default class Gallery extends Component {
           src={images.tulip}
           sourceUrl="https://www.flickr.com/photos/bonguri/8667986348/"
         />
-        <Divider horizontal />
+        <Divider />
         <div />
-        <Divider horizontal />
+        <Divider />
         <Photo
           src={images.snow}
           sourceUrl="https://www.flickr.com/photos/28638567@N02/8559940536/"

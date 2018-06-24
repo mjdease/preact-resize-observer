@@ -5,8 +5,7 @@ import './Divider.scss';
 const Divider = props => {
   const classes = classnames(
     'divider',
-    { 'divider--vertical': props.vertical },
-    { 'divider--horizontal': props.horizontal }
+    props.vertical ? 'divider--vertical' : 'divider--horizontal'
   );
   return <div className={classes} />;
 };
