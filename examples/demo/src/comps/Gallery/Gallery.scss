@@ -1,6 +1,22 @@
 .gallery {
   background: #EAEBEF;
   display: grid;
+  display: -ms-grid;
   grid-template-rows: 1fr 1px 1fr;
   grid-template-columns: 1fr 1px 1fr;
+  -ms-grid-rows: 1fr 1px 1fr;
+  -ms-grid-columns: 1fr 1px 1fr;
+  -ms-grid-row: 2;
+
+  // IE 11 Grid support
+  $count: 1;
+  @for $row from 1 through 3 {
+    @for $col from 1 through 3 {
+      :nth-child(#{$count}) {
+        -ms-grid-row: $row;
+        -ms-grid-column: $col;
+      }
+      $count: $count + 1;
+    }
+  }
 }

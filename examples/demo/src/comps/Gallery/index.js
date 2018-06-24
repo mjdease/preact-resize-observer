@@ -49,11 +49,15 @@ export default class Gallery extends Component {
 
   render() {
     const { left, top } = this.state;
+    const gridTemplateColumns = `${left}fr 1px ${1 - left}fr`;
+    const gridTemplateRows = `${top}fr 1px ${1 - top}fr`;
     const style = {
       gallery: {
         // 3x3 grid where the middle colum and row are 1px wide dividers
-        gridTemplateColumns: `${left}fr 1px ${1 - left}fr`,
-        gridTemplateRows: `${top}fr 1px ${1 - top}fr`
+        gridTemplateColumns,
+        gridTemplateRows,
+        msGridColumns: gridTemplateColumns,
+        msGridRows: gridTemplateRows
       }
     };
 
