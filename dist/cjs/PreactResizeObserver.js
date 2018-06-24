@@ -9,6 +9,23 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 }
@@ -28,13 +45,6 @@ var PreactResizeObserver = /** @class */ (function (_super) {
     function PreactResizeObserver(props) {
         var _this = _super.call(this, props) || this;
         _this.suppressResizeEvent = false;
-        _this.suppressReRender = false;
-        _this.style = {
-            position: 'absolute',
-            width: 0,
-            height: 0,
-            display: 'none',
-        };
         _this.onResize = function (resizeEntries) {
             var resizeCallback = _this.props.onResize;
             if (_this.suppressResizeEvent) {
@@ -47,11 +57,11 @@ var PreactResizeObserver = /** @class */ (function (_super) {
             resizeEntries.forEach(function (entry) {
                 var _a = entry.contentRect, width = _a.width, height = _a.height;
                 var resized = false;
-                if (_this.props.width && _this.currentWidth !== width) {
+                if (_this.props.horizontal && _this.currentWidth !== width) {
                     resized = true;
                     _this.currentWidth = width;
                 }
-                if (_this.props.height && _this.currentHeight !== height) {
+                if (_this.props.vertical && _this.currentHeight !== height) {
                     resized = true;
                     _this.currentHeight = height;
                 }
@@ -61,51 +71,63 @@ var PreactResizeObserver = /** @class */ (function (_super) {
             });
         };
         _this.handleRef = function (el) {
+            var innerRef = _this.props.innerRef;
             _this.element = el;
+            if (_this.element && innerRef && typeof innerRef === 'function') {
+                innerRef(_this.element);
+            }
         };
         _this.observer = new resize_observer_polyfill_1.default(_this.onResize);
         return _this;
     }
     PreactResizeObserver.prototype.componentDidMount = function () {
         var observedElement;
-        if (this.props.target) {
-            observedElement = this.props.target;
+        if (this.props.element) {
+            observedElement = this.props.element;
         }
-        else if (this.element && this.element.parentElement) {
-            observedElement = this.element.parentElement;
+        else if (this.element) {
+            observedElement = this.element;
         }
         if (observedElement) {
             this.observeElement(observedElement);
         }
-        this.suppressReRender = true;
     };
     PreactResizeObserver.prototype.componentWillReceiveProps = function (nextProps) {
-        if (nextProps.target && nextProps.target !== this.props.target) {
-            this.observeElement(nextProps.target);
+        if (nextProps.element) {
+            // Custom element was provided when we didn't have one before
+            if (nextProps.element !== this.props.element) {
+                this.observeElement(nextProps.element);
+            }
+        }
+        else if (this.props.element) {
+            // No custom element provided but we had one previously
+            this.observeElement(this.element);
         }
     };
-    PreactResizeObserver.prototype.shouldComponentUpdate = function () {
-        return !this.suppressReRender;
-    };
     PreactResizeObserver.prototype.observeElement = function (element) {
-        this.suppressResizeEvent = this.props.noInitial;
-        this.observer.disconnect();
-        this.observer.observe(element);
+        if (element) {
+            this.suppressResizeEvent = !this.props.initial;
+            this.observer.disconnect();
+            this.observer.observe(element);
+        }
     };
     PreactResizeObserver.prototype.render = function () {
-        return (preact_1.h("div", { ref: this.handleRef, style: this.style }));
+        var _a = this.props, onResize = _a.onResize, innerRef = _a.innerRef, horizontal = _a.horizontal, vertical = _a.vertical, initial = _a.initial, element = _a.element, tag = _a.tag, children = _a.children, rest = __rest(_a, ["onResize", "innerRef", "horizontal", "vertical", "initial", "element", "tag", "children"]);
+        return preact_1.h(tag, __assign({ ref: this.handleRef }, rest), children);
     };
     PreactResizeObserver.propTypes = {
         onResize: PropTypes.func.isRequired,
-        width: PropTypes.bool,
-        height: PropTypes.bool,
-        noInitial: PropTypes.bool,
-        target: PropTypes.element,
+        horizontal: PropTypes.bool,
+        vertical: PropTypes.bool,
+        initial: PropTypes.bool,
+        element: PropTypes.element,
+        tag: PropTypes.string,
     };
     PreactResizeObserver.defaultProps = {
-        noInitial: false,
-        width: true,
-        height: true,
+        initial: true,
+        horizontal: true,
+        vertical: true,
+        tag: 'div',
     };
     return PreactResizeObserver;
 }(preact_1.Component));

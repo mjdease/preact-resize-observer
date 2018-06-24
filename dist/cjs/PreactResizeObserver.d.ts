@@ -1,10 +1,12 @@
-import { Component } from 'preact';
-export interface IPreactResizeObserverProps {
+import { Component, VNode } from 'preact';
+export interface IPreactResizeObserverProps extends JSX.HTMLAttributes {
     onResize(width: number, height: number): void;
-    width?: boolean;
-    height?: boolean;
-    noInitial?: boolean;
-    target?: Element;
+    innerRef?(element: Element): void;
+    horizontal?: boolean;
+    vertical?: boolean;
+    initial?: boolean;
+    element?: Element;
+    tag?: keyof JSX.IntrinsicElements;
 }
 export default class PreactResizeObserver extends Component<IPreactResizeObserverProps> {
     private observer;
@@ -12,8 +14,6 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     private currentWidth?;
     private currentHeight?;
     private suppressResizeEvent;
-    private suppressReRender;
-    private style;
     static propTypes: {
         [name in keyof IPreactResizeObserverProps]: any;
     };
@@ -21,9 +21,8 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     constructor(props: IPreactResizeObserverProps);
     componentDidMount(): void;
     componentWillReceiveProps(nextProps: IPreactResizeObserverProps): void;
-    shouldComponentUpdate(): boolean;
-    private observeElement(element);
+    private observeElement(element?);
     private onResize;
     private handleRef;
-    render(): JSX.Element;
+    render(): VNode<any>;
 }
