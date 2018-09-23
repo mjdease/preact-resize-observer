@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h, FunctionalComponent } from 'preact';
 
 interface ICheckboxProps {
   label: string;
@@ -6,7 +6,7 @@ interface ICheckboxProps {
   onChange: JSX.GenericEventHandler;
 }
 
-const checkbox = (props: ICheckboxProps) => (
+const Checkbox: FunctionalComponent<ICheckboxProps> = (props: ICheckboxProps) => (
   <label className="option-label">
     <input
       type="checkbox"
@@ -17,4 +17,4 @@ const checkbox = (props: ICheckboxProps) => (
   </label>
 );
 
-export default checkbox;
+export default Checkbox;

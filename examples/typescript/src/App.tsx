@@ -1,4 +1,5 @@
 import { Component, h } from 'preact';
+import classNames from 'classnames';
 import ResizeObserver from 'preact-resize-observer/dev';
 
 import Checkbox from './Checkbox';
@@ -10,11 +11,22 @@ interface IAppState {
   height: number;
   childWidth: number;
   childHeight: number;
-  observedElement?: Element;
-  initial: boolean;
+  observedEl?: Element;
+  emitInitial: boolean;
   observeWidth: boolean;
   observeHeight: boolean;
 }
+
+const childObserverStyle = {
+  display: 'block',
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  width: '50%',
+  left: '25%',
+  pointerEvents: 'none',
+  border: '2px dashed #888',
+};
 
 export default class App extends Component<{}, IAppState> {
   private appEl?: Element;
@@ -28,8 +40,8 @@ export default class App extends Component<{}, IAppState> {
       height: 0,
       childWidth: 0,
       childHeight: 0,
-      observedElement: null,
-      initial: true,
+      observedEl: null,
+      emitInitial: true,
       observeWidth: true,
       observeHeight: true,
     };
@@ -37,7 +49,7 @@ export default class App extends Component<{}, IAppState> {
 
   componentDidMount() {
     this.setState({
-      observedElement: this.childEl,
+      observedEl: this.childEl,
     });
   }
 
@@ -55,21 +67,9 @@ export default class App extends Component<{}, IAppState> {
     });
   }
 
-  observeApp = () => {
+  observeEl = (element?: Element) => () => {
     this.setState({
-      observedElement: this.appEl,
-    });
-  }
-
-  observeChild = () => {
-    this.setState({
-      observedElement: this.childEl,
-    });
-  }
-
-  observeNone = () => {
-    this.setState({
-      observedElement: undefined,
+      observedEl: element,
     });
   }
 
@@ -84,77 +84,63 @@ export default class App extends Component<{}, IAppState> {
   }
 
   render() {
-    const childObserverStyle = {
-      display: 'block',
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      width: '50%',
-      left: '25%',
-      pointerEvents: 'none',
-      border: '2px dashed #888',
-    };
+    const {
+      observedEl,
+      observeHeight,
+      observeWidth,
+      width,
+      height,
+      childHeight,
+      childWidth,
+      emitInitial,
+    } = this.state;
 
     return (
-      // This resize oberserver watches the size of itself
-      <ResizeObserver id="app" innerRef={this.handleAppRef} onResize={this.handleResize}>
+      // This resize observer watches the size of itself
+      <ResizeObserver
+        id="app"
+        innerRef={this.handleAppRef}
+        onResize={this.handleResize}
+        className={classNames({ observed: observedEl === this.appEl })}
+      >
         <div className="stats">
-          <h3>Self Observer</h3>
-          <h2>{this.state.width} x {this.state.height}</h2>
+          <h3>Basic Observer</h3>
+          <h2>{width} x {height}</h2>
         </div>
-        <div className="child" ref={(el) => { this.childEl = el; }} style={{ position: 'relative' }}>
-          <div className="grandchild">
-            {/* This resize observer watches the size of a custom element */}
-            <ResizeObserver
-              tag="section"
-              horizontal={this.state.observeWidth}
-              vertical={this.state.observeHeight}
-              onResize={this.handleChildResize}
-              element={this.state.observedElement}
-              initial={this.state.initial}
-              // Ensures normal html attrs are passed through
-              className="test-resize-observer"
-              style={childObserverStyle}
-            />
-            <div className="stats">
-              <h3>Custom Element Observer</h3>
-              <h2>{this.state.childWidth} x {this.state.childHeight}</h2>
-            </div>
-            <div className="option-container">
-              <Checkbox
-                label="Page"
-                onChange={this.observeApp}
-                checked={this.state.observedElement === this.appEl}
-              />
-              <Checkbox
-                label="Child"
-                onChange={this.observeChild}
-                checked={this.state.observedElement === this.childEl}
-              />
-              <Checkbox
-                label="Self"
-                onChange={this.observeNone}
-                checked={!this.state.observedElement}
-              />
-            </div>
-            <div className="option-container">
-              <Checkbox
-                label="horizontal"
-                onChange={this.toggleState('observeWidth')}
-                checked={this.state.observeWidth}
-              />
-              <Checkbox
-                label="vertical"
-                onChange={this.toggleState('observeHeight')}
-                checked={this.state.observeHeight}
-              />
-              <Checkbox
-                label="initial"
-                onChange={this.toggleState('initial')}
-                checked={this.state.initial}
-              />
-            </div>
+        <div
+          className={classNames('child', { observed: observedEl === this.childEl })}
+          ref={(el) => { this.childEl = el; }}
+        >
+          {/* This resize observer watches the size of a custom element */}
+          <ResizeObserver
+            tag="section"
+            horizontal={observeWidth}
+            vertical={observeHeight}
+            onResize={this.handleChildResize}
+            element={observedEl}
+            initial={emitInitial}
+            // Normal html attrs are passed through:
+            className={classNames('test-resize-observer', { observed: !observedEl })}
+            style={childObserverStyle}
+          />
+
+          <div className="stats">
+            <h3>Configruable Observer</h3>
+            <h2>{childWidth} x {childHeight}</h2>
           </div>
+          <div className="option-container">
+            <span>Element to <span style={{ color: 'blue' }}>observe</span>: </span>
+            <Checkbox label="Page" onChange={this.observeEl(this.appEl)} checked={observedEl === this.appEl} />
+            <Checkbox label="Child" onChange={this.observeEl(this.childEl)} checked={observedEl === this.childEl} />
+            <Checkbox label="Self (none)" onChange={this.observeEl(undefined)} checked={!observedEl} />
+          </div>
+          <div className="option-container">
+            <span>Options: </span>
+            <Checkbox label="horizontal" onChange={this.toggleState('observeWidth')} checked={observeWidth} />
+            <Checkbox label="vertical" onChange={this.toggleState('observeHeight')} checked={observeHeight} />
+            <Checkbox label="initial" onChange={this.toggleState('initial')} checked={emitInitial} />
+          </div>
+
         </div>
       </ResizeObserver>
     );

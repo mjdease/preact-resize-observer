@@ -27,6 +27,7 @@ body {
   background: #eee;
   width: 50%;
   height: 50%;
+  position: relative;
 }
 
 .option-container {
@@ -35,4 +36,8 @@ body {
 
 .option-label {
   padding: 2px 5px;
+}
+
+.observed {
+  box-shadow: inset 0 0 10px blue;
 }
