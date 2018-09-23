@@ -53,13 +53,13 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     }
   }
 
-  componentWillReceiveProps(nextProps: IPreactResizeObserverProps) {
-    if (nextProps.element) {
+  componentDidUpdate(prevProps: IPreactResizeObserverProps) {
+    if (this.props.element) {
       // Custom element was provided when we didn't have one before
-      if (nextProps.element !== this.props.element) {
-        this.observeElement(nextProps.element);
+      if (this.props.element !== prevProps.element) {
+        this.observeElement(this.props.element);
       }
-    } else if (this.props.element) {
+    } else if (prevProps.element) {
       // No custom element provided but we had one previously
       this.observeElement(this.element);
     }
