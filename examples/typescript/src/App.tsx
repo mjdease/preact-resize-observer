@@ -19,9 +19,6 @@ interface IAppState {
 export default class App extends Component<{}, IAppState> {
   private appEl?: Element;
   private childEl?: Element;
-  private toggleObserveWidth: EventListener;
-  private toggleObserveHeight: EventListener;
-  private toggleObserveInitial: EventListener;
 
   constructor() {
     super();
@@ -36,10 +33,6 @@ export default class App extends Component<{}, IAppState> {
       observeWidth: true,
       observeHeight: true,
     };
-
-    this.toggleObserveWidth = this.toggleState.bind(this, 'observeWidth');
-    this.toggleObserveHeight = this.toggleState.bind(this, 'observeHeight');
-    this.toggleObserveInitial = this.toggleState.bind(this, 'initial');
   }
 
   componentDidMount() {
@@ -80,11 +73,14 @@ export default class App extends Component<{}, IAppState> {
     });
   }
 
-  toggleState(key: 'observeWidth'|'observeHeight'|'initial') {
-    this.setState({
-      // https://github.com/Microsoft/TypeScript/issues/13948
-      [key as any]: !this.state[key],
-    });
+  toggleState = (key: 'observeWidth'|'observeHeight'|'initial') => () => {
+    this.setState(prevState => ({
+      [key]: !prevState[key],
+    }));
+  }
+
+  handleAppRef = (el) => {
+    this.appEl = el;
   }
 
   render() {
@@ -101,13 +97,12 @@ export default class App extends Component<{}, IAppState> {
 
     return (
       // This resize oberserver watches the size of itself
-      /* tslint:disable-next-line jsx-no-lambda */
-      <ResizeObserver id="app" innerRef={(el) => {this.appEl = el;}} onResize={this.handleResize}>
+      <ResizeObserver id="app" innerRef={this.handleAppRef} onResize={this.handleResize}>
         <div className="stats">
           <h3>Self Observer</h3>
           <h2>{this.state.width} x {this.state.height}</h2>
         </div>
-        <div className="child" ref={(el) => {this.childEl = el;}} style={{ position: 'relative' }}>
+        <div className="child" ref={(el) => { this.childEl = el; }} style={{ position: 'relative' }}>
           <div className="grandchild">
             {/* This resize observer watches the size of a custom element */}
             <ResizeObserver
@@ -145,17 +140,17 @@ export default class App extends Component<{}, IAppState> {
             <div className="option-container">
               <Checkbox
                 label="horizontal"
-                onChange={this.toggleObserveWidth}
+                onChange={this.toggleState('observeWidth')}
                 checked={this.state.observeWidth}
               />
               <Checkbox
                 label="vertical"
-                onChange={this.toggleObserveHeight}
+                onChange={this.toggleState('observeHeight')}
                 checked={this.state.observeHeight}
               />
               <Checkbox
                 label="initial"
-                onChange={this.toggleObserveInitial}
+                onChange={this.toggleState('initial')}
                 checked={this.state.initial}
               />
             </div>

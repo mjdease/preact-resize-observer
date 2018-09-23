@@ -1,4 +1,4 @@
-import { h, Component, VNode } from 'preact';
+import { h, Component } from 'preact';
 import ResizeObserver from 'resize-observer-polyfill';
 import * as PropTypes from 'prop-types';
 
@@ -24,7 +24,7 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     horizontal: PropTypes.bool,
     vertical: PropTypes.bool,
     initial: PropTypes.bool,
-    element: PropTypes.element,
+    element: PropTypes.instanceOf(Element),
     tag: PropTypes.string,
   };
 
@@ -110,16 +110,18 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
 
   render() {
     const {
-      onResize, innerRef, horizontal, vertical, initial, element, tag, children, ...rest,
+      // tslint:disable-next-line:trailing-comma https://github.com/palantir/tslint/issues/4172
+      onResize, innerRef, horizontal, vertical, initial, element, tag, children, ...rest
     } = this.props;
 
-    return h(
-      tag!,
-      {
-        ref: this.handleRef,
-        ...rest,
-      },
-      children!,
+    // TODO: remove non-null assertion when preact types gets defaultProps support
+    // tslint:disable-next-line:variable-name
+    const Tag: string = tag!;
+
+    return (
+    <Tag ref={this.handleRef} {...rest}>
+      {children}
+    </Tag>
     );
   }
 }
