@@ -5,3 +5,6 @@ coverage:
         target: auto
         threshold: null
         base: auto
+
+# Disable comments on Pull Requests
+comment: false
