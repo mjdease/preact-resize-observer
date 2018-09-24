@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "lib": ["dom", "es5", "scripthost"]
+  },
+  "exclude": [
+    "**/*.spec.ts?"
+  ]
+}
