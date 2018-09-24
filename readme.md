@@ -1,6 +1,10 @@
 preact-resize-observer
 ---
 
+[![Build Status](https://travis-ci.com/mjdease/preact-resize-observer.svg?branch=master)](https://travis-ci.com/mjdease/preact-resize-observer)
+[![codecov](https://codecov.io/gh/mjdease/preact-resize-observer/branch/master/graph/badge.svg)](https://codecov.io/gh/mjdease/preact-resize-observer)
+[![npm version](https://badge.fury.io/js/preact-resize-observer.svg)](https://badge.fury.io/js/preact-resize-observer)
+
 Watch an element for changes to its size. Supports modern browsers and IE9+.
 
 This is a Preact component wrapper for the excellent [ResizeObserver polyfill](https://github.com/que-etc/resize-observer-polyfill).
