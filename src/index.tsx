@@ -2,9 +2,13 @@ import { h, Component } from 'preact';
 import ResizeObserver from 'resize-observer-polyfill';
 import * as PropTypes from 'prop-types';
 
+export type OnResizeProp = (width: number, height: number) => void;
+
+export type InnerRefProp = (element: Element) => void;
+
 export interface IPreactResizeObserverProps extends JSX.HTMLAttributes {
-  onResize(width: number, height: number): void;
-  innerRef?(element: Element): void;
+  onResize: OnResizeProp;
+  innerRef?: InnerRefProp;
   horizontal?: boolean;
   vertical?: boolean;
   initial?: boolean;
@@ -41,7 +45,7 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     this.observer = new ResizeObserver(this.onResize);
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     let observedElement: Element | undefined;
     if (this.props.element) {
       observedElement = this.props.element;
@@ -53,7 +57,7 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     }
   }
 
-  componentDidUpdate(prevProps: IPreactResizeObserverProps) {
+  public componentDidUpdate(prevProps: IPreactResizeObserverProps) {
     if (this.props.element) {
       // Custom element was provided when we didn't have one before
       if (this.props.element !== prevProps.element) {
@@ -63,6 +67,10 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
       // No custom element provided but we had one previously
       this.observeElement(this.element);
     }
+  }
+
+  public componentWillUnmount() {
+    this.observer.disconnect();
   }
 
   private observeElement(element?: Element) {
@@ -79,9 +87,6 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
       this.suppressResizeEvent = false;
       return;
     }
-    if (typeof resizeCallback !== 'function') {
-      return;
-    }
     resizeEntries.forEach((entry) => {
       const { width, height } = entry.contentRect;
       let resized = false;
@@ -93,7 +98,7 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
         resized = true;
         this.currentHeight = height;
       }
-      if (resized) {
+      if (resized && typeof resizeCallback === 'function') {
         resizeCallback(width, height);
       }
     });
@@ -108,14 +113,13 @@ export default class PreactResizeObserver extends Component<IPreactResizeObserve
     }
   }
 
-  render() {
+  public render() {
     const {
       // tslint:disable-next-line:trailing-comma https://github.com/palantir/tslint/issues/4172
       onResize, innerRef, horizontal, vertical, initial, element, tag, children, ...rest
     } = this.props;
 
     // TODO: remove non-null assertion when preact types gets defaultProps support
-    // tslint:disable-next-line:variable-name
     const Tag: string = tag!;
 
     return (
